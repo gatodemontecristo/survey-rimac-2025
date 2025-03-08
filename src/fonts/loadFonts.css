@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'Rimac-Display';
+  src:
+    url('./Rimac-Display.ttf') format('truetype'),
+    url('./Rimac-Display.woff') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-RegularItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BR-Sonoma';
+  src: url('./br-sonoma/BRSonoma-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
