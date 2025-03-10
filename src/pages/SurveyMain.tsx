@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SlideTermsConditions } from '../components';
 
 const questions = [
   '¿Cuál es tu comida favorita?',
@@ -16,8 +17,37 @@ export const SurveyMain = () => {
     }
   };
 
+  const nextSlide = () => {
+    if (index === 0) {
+      return (
+        <div className='text-center'>
+          <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
+          <button
+            onClick={nextQuestion}
+            className='px-6 py-3 bg-rimac-red text-white rounded-lg'
+          >
+            Siguiente
+          </button>
+        </div>
+      );
+    } else if (index === 1) {
+      return <SlideTermsConditions></SlideTermsConditions>;
+    } else if (index === 2) {
+      return (
+        <div className='text-center'>
+          <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
+          <button
+            onClick={nextQuestion}
+            className='px-6 py-3 bg-rimac-red text-white rounded-lg'
+          >
+            Siguiente
+          </button>
+        </div>
+      );
+    }
+  };
   return (
-    <div className='h-screen w-full flex justify-center items-center overflow-hidden bg-rimac-red'>
+    <div className='h-screen w-3/4 flex justify-center items-center overflow-hidden bg-green-500'>
       <AnimatePresence mode='wait'>
         <motion.div
           key={index}
@@ -25,17 +55,9 @@ export const SurveyMain = () => {
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className='absolute flex justify-center items-center w-full h-full bg-white'
+          className=' flex justify-center items-center w-full h-full bg-white'
         >
-          <div className='text-center'>
-            <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
-            <button
-              onClick={nextQuestion}
-              className='px-6 py-3 bg-rimac-red text-white rounded-lg'
-            >
-              Siguiente
-            </button>
-          </div>
+          {nextSlide()}
         </motion.div>
       </AnimatePresence>
     </div>
