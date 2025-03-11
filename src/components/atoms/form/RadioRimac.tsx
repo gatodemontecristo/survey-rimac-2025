@@ -24,8 +24,7 @@ export const RadioRimac = ({
         onChange={() => onChange(value)}
       />
       <div className='custom-radio'></div>
-      <span className='radio-label'>{label}</span>
-      {/* <span className='text-gray-700'>{label}</span> */}
+      <span className='radio-label font-br-sonoma text-lg'>{label}</span>
     </label>
   );
 };

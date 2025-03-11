@@ -39,7 +39,6 @@ input[type='radio']:checked + .custom-radio::after {
 /* Estilo del texto */
 .radio-label {
   margin-left: 8px;
-  font-size: 16px;
   color: #05030f;
   cursor: pointer;
 }
