@@ -1,15 +1,15 @@
+import clsx from 'clsx';
 import '../../../styles/button-style.css';
 
 interface ButtonRimacProps {
   text: string;
   fnClick: () => void;
+  className?: string;
 }
-export const ButtonRimac = ({ text, fnClick }: ButtonRimacProps) => {
+export const ButtonRimac = ({ text, fnClick, className }: ButtonRimacProps) => {
   return (
-    <div>
-      <button onClick={fnClick} className=' button-circle'>
-        <span className='button-text'>{text}</span>
-      </button>
-    </div>
+    <button onClick={fnClick} className={clsx('button-circle', className)}>
+      <span className='button-text'>{text}</span>
+    </button>
   );
 };

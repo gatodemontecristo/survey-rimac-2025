@@ -1,0 +1,45 @@
+/* Oculta el radio button nativo */
+input[type='radio'] {
+  display: none;
+}
+
+/* Estilo del contenedor circular */
+.custom-radio {
+  width: 25px;
+  height: 25px;
+  border: 2px solid gray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* Círculo interno que indica selección */
+.custom-radio::after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-color: #03050f;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.2s;
+}
+
+/* Cuando el radio button está seleccionado */
+input[type='radio']:checked + .custom-radio {
+  border-color: blue;
+}
+
+input[type='radio']:checked + .custom-radio::after {
+  transform: scale(1);
+}
+
+/* Estilo del texto */
+.radio-label {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #05030f;
+  cursor: pointer;
+}

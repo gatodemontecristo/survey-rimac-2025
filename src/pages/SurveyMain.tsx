@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SlideTermsConditions } from '../components';
+import { SlideInformation01, SlideTermsConditions } from '../components';
 
 const questions = [
   '¿Cuál es tu comida favorita?',
@@ -31,18 +31,19 @@ export const SurveyMain = () => {
         </div>
       );
     } else if (index === 1) {
-      return <SlideTermsConditions></SlideTermsConditions>;
+      return (
+        <SlideTermsConditions fnSubmit={nextQuestion}></SlideTermsConditions>
+      );
     } else if (index === 2) {
       return (
-        <div className='text-center'>
-          <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
-          <button
-            onClick={nextQuestion}
-            className='px-6 py-3 bg-rimac-red text-white rounded-lg'
-          >
-            Siguiente
-          </button>
-        </div>
+        <SlideInformation01
+          fnSubmit={nextQuestion}
+          itemOptions={[
+            { label: 'Seguro Particular', value: 'particular' },
+            { label: 'Seguro Colectivo', value: 'colectivo' },
+            { label: 'EPS', value: 'eps' },
+          ]}
+        ></SlideInformation01>
       );
     }
   };

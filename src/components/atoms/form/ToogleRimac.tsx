@@ -1,18 +1,19 @@
 import clsx from 'clsx';
-import { useState } from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
 interface ToogleRimacProps {
   text?: string;
-  onState?: boolean;
+
   className?: string;
+  isOn: boolean;
+  setIsOn: (value: boolean) => void;
 }
 export const ToogleRimac = ({
   text,
-  onState = false,
   className,
+  isOn,
+  setIsOn,
 }: ToogleRimacProps) => {
-  const [isOn, setIsOn] = useState(onState);
   return (
     <div
       className={clsx(
