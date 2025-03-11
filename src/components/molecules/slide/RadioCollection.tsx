@@ -1,24 +1,23 @@
-import { ItemOption } from '../../../types';
+import { ItemOption, ReactFormProps } from '../../../types';
 import { RadioRimac } from '../../atoms';
-import { Control, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
-interface RadioCollectionProps {
+interface RadioCollectionProps extends ReactFormProps {
   itemOptions: ItemOption[];
-  control: Control<any>;
-  message?: string;
 }
 export const RadioCollection = ({
   itemOptions,
+  name,
   control,
   message,
 }: RadioCollectionProps) => {
   return (
     <>
-      <div className='flex flex-row flex-wrap gap-5'>
+      <div className='flex flex-row flex-wrap gap-7'>
         {itemOptions.map((itemOption) => (
           <Controller
             key={itemOption.value}
-            name='haveInsurance'
+            name={name}
             control={control}
             render={({ field }) => (
               <RadioRimac

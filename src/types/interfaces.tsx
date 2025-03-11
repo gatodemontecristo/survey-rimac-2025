@@ -19,6 +19,7 @@ export interface UrlRimacProps extends UrlProps {
 export interface InfoRimacProps {
   text: string;
   className?: string;
+  size?: TailwindFontSize;
 }
 export interface UrlProps {
   text: string;
@@ -27,6 +28,7 @@ export interface UrlProps {
 
 export interface QuestionRimacProps {
   children?: ReactElement | ReactElement[];
+  className?: string;
 }
 
 export interface QuestionRimacHOCProps {

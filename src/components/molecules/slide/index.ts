@@ -1,4 +1,3 @@
-export * from './SlideTermsConditions';
-export * from './SlideInformation01';
 export * from './RadioCollection';
+export * from './ToogleCollection';
 export * from './Question';
