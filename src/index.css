@@ -11,8 +11,26 @@
 }
 
 .css-13cymwt-control {
-  padding: 10px 15px;
+  padding: 10px 15px 10px 15px;
 }
 .react-select__control {
-  padding: 10px 15px;
+  padding: 10px 15px 10px 15px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #03050f;
+  border-radius: 10px;
+  border: 2px solid #03050f;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }

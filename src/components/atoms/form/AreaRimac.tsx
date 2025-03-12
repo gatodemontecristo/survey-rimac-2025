@@ -1,15 +1,18 @@
 import { useState } from 'react';
 
-interface InputRimacProps {
+interface AreaRimacProps {
+  maxLength: number;
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
 }
-export const InputRimac = ({
+
+export const AreaRimac = ({
+  maxLength,
   placeholder,
   value,
   onChange,
-}: InputRimacProps) => {
+}: AreaRimacProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -18,32 +21,29 @@ export const InputRimac = ({
       setIsFocused(false);
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    if (/^\d*\.?\d*$/.test(newValue)) {
-      onChange(newValue);
-    }
-  };
-
   return (
     <div className='relative w-full'>
-      <input
-        type='text'
+      <textarea
         value={value}
-        onChange={handleChange}
+        onChange={(e) => onChange(e.target.value)}
+        maxLength={maxLength}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='w-full px-4 py-4 font-br-sonoma border border-gray-300 rounded focus:outline-none focus:border-blue-500'
+        className='w-full font-br-sonoma text-lg p-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 resize-none'
+        rows={4}
       />
       <label
         className={`absolute left-4  font-br-sonoma   transition-all duration-300 ease-in-out ${
           isFocused || value
             ? 'text-xs top-1 text-blue-500'
-            : 'text-gray-500 -translate-y-1/2 top-1/2'
+            : 'text-gray-500 -translate-y-1/2 top-5'
         }`}
       >
         {placeholder}
       </label>
+      <div className='absolute bottom-2 right-2 text-gray-500 text-sm'>
+        {value.length}/{maxLength}
+      </div>
     </div>
   );
 };

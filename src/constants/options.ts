@@ -17,3 +17,9 @@ export const optionCompany: ItemOption[] = [
   { value: '3', label: 'Pacífico' },
   { value: '4', label: 'MAPFRE' },
 ];
+
+export const optionLast12: ItemOption[] = [
+  { value: '1', label: 'Subí de peso' },
+  { value: '2', label: 'Perdí peso' },
+  { value: '3', label: 'Mi peso se mantuvo igual' },
+];

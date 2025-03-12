@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SlideInformation01, SlideTermsConditions } from '../components';
+import {
+  SlideInformation01,
+  SlideTermsConditions,
+  SlideInformation02,
+} from '../components';
 
 const questions = [
   '¿Cuál es tu comida favorita?',
   '¿Qué te motiva cada día?',
+  '¿Prefieres gatos o perros?',
   '¿Prefieres gatos o perros?',
 ];
 
@@ -36,10 +41,12 @@ export const SurveyMain = () => {
       );
     } else if (index === 2) {
       return <SlideInformation01 fnSubmit={nextQuestion}></SlideInformation01>;
+    } else if (index === 3) {
+      return <SlideInformation02 fnSubmit={nextQuestion}></SlideInformation02>;
     }
   };
   return (
-    <div className='h-screen w-3/4 flex justify-center items-center overflow-hidden bg-green-500'>
+    <div className='h-screen w-3/4 flex justify-center items-center  bg-green-500'>
       <AnimatePresence mode='wait'>
         <motion.div
           key={index}
