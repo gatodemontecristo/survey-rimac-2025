@@ -10,3 +10,10 @@ export const optionInsurance: ItemOption[] = [
   { value: '2', label: 'Seguro Colectivo' },
   { value: '3', label: 'EPS' },
 ];
+
+export const optionCompany: ItemOption[] = [
+  { value: '1', label: 'La Positiva' },
+  { value: '2', label: 'Interseguro' },
+  { value: '3', label: 'Pacífico' },
+  { value: '4', label: 'MAPFRE' },
+];

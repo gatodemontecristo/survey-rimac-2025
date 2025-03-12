@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { TailwindFontSize } from './type';
+import { Control } from 'react-hook-form';
 
 export interface ItemOption {
   label: string;
@@ -36,4 +37,10 @@ export interface QuestionRimacHOCProps {
   Label: ({ size, text, special }: LabelRimacProps) => JSX.Element;
   Info: ({ text, className }: InfoRimacProps) => JSX.Element;
   Url: ({ className, size, text, url }: UrlRimacProps) => JSX.Element;
+}
+
+export interface ReactFormProps {
+  name: string;
+  control: Control<any>;
+  message?: string;
 }

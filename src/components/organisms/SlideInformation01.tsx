@@ -4,15 +4,24 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 
 import { optionInsurance, optionYN } from '../../constants';
-import { QuestionRimac, RadioCollection } from '../molecules';
-
+import { QuestionRimac, RadioCollection, SelectRimac } from '../molecules';
+const options = [
+  { value: 'option1', label: 'Option 1' },
+  { value: 'option2', label: 'Option 2' },
+  { value: 'option3', label: 'Option 3' },
+];
 interface SlideInformation01Props {
   fnSubmit: () => void;
 }
 const schema = yup.object().shape({
   haveInsurance: yup.string().required('Debes seleccionar una opción'),
   insurance: yup.string().required('Debes seleccionar una aseguradora'),
+  company: yup
+    .object()
+    .typeError('Debes seleccionar una compañia')
+    .required('Debes seleccionar una compañia'),
 });
+
 export const SlideInformation01 = ({ fnSubmit }: SlideInformation01Props) => {
   const {
     control,
@@ -23,6 +32,7 @@ export const SlideInformation01 = ({ fnSubmit }: SlideInformation01Props) => {
     defaultValues: {
       haveInsurance: '',
       insurance: '',
+      company: undefined,
     },
   });
 
@@ -63,6 +73,12 @@ export const SlideInformation01 = ({ fnSubmit }: SlideInformation01Props) => {
           message={errors?.insurance?.message}
         />
       </QuestionRimac>
+      <SelectRimac
+        {...{ control }}
+        name='company'
+        itemOptions={options}
+        message={errors?.company?.message}
+      ></SelectRimac>
 
       <div className='flex flex-row justify-end w-full mt-10'>
         <ButtonRimac

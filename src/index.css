@@ -9,3 +9,10 @@
   --color-rimac-grey: #05030f;
   --color-rimac-purple: #621fff;
 }
+
+.css-13cymwt-control {
+  padding: 10px 15px;
+}
+.react-select__control {
+  padding: 10px 15px;
+}
