@@ -35,16 +35,7 @@ export const SurveyMain = () => {
         <SlideTermsConditions fnSubmit={nextQuestion}></SlideTermsConditions>
       );
     } else if (index === 2) {
-      return (
-        <SlideInformation01
-          fnSubmit={nextQuestion}
-          itemOptions={[
-            { label: 'Seguro Particular', value: 'particular' },
-            { label: 'Seguro Colectivo', value: 'colectivo' },
-            { label: 'EPS', value: 'eps' },
-          ]}
-        ></SlideInformation01>
-      );
+      return <SlideInformation01 fnSubmit={nextQuestion}></SlideInformation01>;
     }
   };
   return (
