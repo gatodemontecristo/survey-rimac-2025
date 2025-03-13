@@ -95,8 +95,13 @@ export const SurveyMain = () => {
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className=' flex justify-center items-center w-full h-full bg-white'
+          className=' flex relative justify-center items-center w-full h-full  bg-rimac-white'
         >
+          <img
+            src='../rimac-signature.svg'
+            alt='logo'
+            className='absolute top-5 right-5 w-20'
+          ></img>
           {nextSlide()}
         </motion.div>
       </AnimatePresence>
