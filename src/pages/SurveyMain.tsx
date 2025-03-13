@@ -5,11 +5,15 @@ import {
   SlideInformation01,
   SlideTermsConditions,
   SlideInformation02,
+  SlideInformation04,
+  SlideInformation05,
 } from '../components';
 
 const questions = [
   '¿Cuál es tu comida favorita?',
   '¿Qué te motiva cada día?',
+  '¿Prefieres gatos o perros?',
+  '¿Prefieres gatos o perros?',
   '¿Prefieres gatos o perros?',
   '¿Prefieres gatos o perros?',
 ];
@@ -65,6 +69,20 @@ export const SurveyMain = () => {
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation03>
+      );
+    } else if (index === 4) {
+      return (
+        <SlideInformation04
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation04>
+      );
+    } else if (index === 5) {
+      return (
+        <SlideInformation05
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation05>
       );
     }
   };

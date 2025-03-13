@@ -5,14 +5,16 @@ import { Controller } from 'react-hook-form';
 
 interface InputFormProps extends ReactFormProps {
   placeholder: string;
+  type?: 'decimal' | 'number';
   className?: string;
 }
 export const InputForm = ({
   name,
   control,
   message,
-  placeholder,
   className,
+  type = 'decimal',
+  ...props
 }: InputFormProps) => {
   return (
     <div
@@ -27,7 +29,8 @@ export const InputForm = ({
           control={control}
           render={({ field }) => (
             <InputRimac
-              placeholder={placeholder}
+              {...props}
+              type={type}
               value={field.value}
               onChange={field.onChange}
             />

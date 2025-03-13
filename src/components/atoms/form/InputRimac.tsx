@@ -3,11 +3,13 @@ import { useState } from 'react';
 interface InputRimacProps {
   placeholder?: string;
   value: string;
+  type: 'decimal' | 'number';
   onChange: (value: string) => void;
 }
 export const InputRimac = ({
   placeholder,
   value,
+  type,
   onChange,
 }: InputRimacProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -18,9 +20,19 @@ export const InputRimac = ({
       setIsFocused(false);
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeDecimal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     if (/^\d*\.?\d*$/.test(newValue)) {
+      onChange(newValue);
+    }
+  };
+
+  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    if (
+      /^\d*$/.test(newValue) &&
+      (newValue === '' || Number(newValue) <= 9999)
+    ) {
       onChange(newValue);
     }
   };
@@ -30,7 +42,7 @@ export const InputRimac = ({
       <input
         type='text'
         value={value}
-        onChange={handleChange}
+        onChange={type === 'number' ? handleChangeNumber : handleChangeDecimal}
         onFocus={handleFocus}
         onBlur={handleBlur}
         className='w-full px-4 py-4 font-br-sonoma border border-gray-300 rounded focus:outline-none focus:border-blue-500'

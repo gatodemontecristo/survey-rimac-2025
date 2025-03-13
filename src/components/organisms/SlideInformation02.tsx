@@ -17,7 +17,7 @@ const schema = yup.object().shape({
   heigh: yup.string().required('Debes ingresar tu talla (CM)'),
   weigh: yup.string().required('Debes ingresar tu peso (KG)'),
   las12months: yup.string().required('Debes seleccionar una opción'),
-  weightgain: yup.string().required('Debes ingresar peso subido (KG)'),
+  weightgain: yup.string().required('Debes ingresar peso subido/perdido (KG)'),
   comment: yup.string().required('Debes ingresar un motivo'),
 });
 export const SlideInformation02 = ({
