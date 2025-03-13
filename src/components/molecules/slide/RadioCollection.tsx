@@ -1,19 +1,27 @@
-import { ItemOption, ReactFormProps } from '../../../types';
+import clsx from 'clsx';
+import { ItemOption, ReactFormProps, TailwindJustify } from '../../../types';
 import { RadioRimac } from '../../atoms';
 import { Controller } from 'react-hook-form';
 
 interface RadioCollectionProps extends ReactFormProps {
   itemOptions: ItemOption[];
+  justifyOption?: TailwindJustify;
 }
 export const RadioCollection = ({
   itemOptions,
+  justifyOption = 'justify-start',
   name,
   control,
   message,
 }: RadioCollectionProps) => {
   return (
     <>
-      <div className='flex flex-row flex-wrap gap-7'>
+      <div
+        className={clsx(
+          'flex flex-row flex-wrap ms-5 gap-x-7 gap-y-2',
+          justifyOption,
+        )}
+      >
         {itemOptions.map((itemOption) => (
           <Controller
             key={itemOption.value}

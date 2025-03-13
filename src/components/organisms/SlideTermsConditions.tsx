@@ -26,7 +26,7 @@ export const SlideTermsConditions = ({
     },
   });
   return (
-    <div className='flex flex-col items-start justify-center text-justify gap-4 w-3/4'>
+    <div className='flex flex-col items-start justify-center text-justify gap-4 w-4/5 py-10 overflow-y-scroll custom-scrollbar'>
       <QuestionRimac className='mb-4'>
         <QuestionRimac.Label
           size='text-4xl'

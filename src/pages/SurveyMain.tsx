@@ -1,10 +1,20 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SlideInformation01, SlideTermsConditions } from '../components';
+import { SlideInformation03 } from '../components/organisms/SlideInformation03';
+import {
+  SlideInformation01,
+  SlideTermsConditions,
+  SlideInformation02,
+  SlideInformation04,
+  SlideInformation05,
+} from '../components';
 
 const questions = [
   '¿Cuál es tu comida favorita?',
   '¿Qué te motiva cada día?',
+  '¿Prefieres gatos o perros?',
+  '¿Prefieres gatos o perros?',
+  '¿Prefieres gatos o perros?',
   '¿Prefieres gatos o perros?',
 ];
 
@@ -17,29 +27,67 @@ export const SurveyMain = () => {
     }
   };
 
+  const backQuestion = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  };
+
   const nextSlide = () => {
     if (index === 0) {
-      return (
-        <div className='text-center'>
-          <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
-          <button
-            onClick={nextQuestion}
-            className='px-6 py-3 bg-rimac-red text-white rounded-lg'
-          >
-            Siguiente
-          </button>
-        </div>
-      );
-    } else if (index === 1) {
+      // return (
+      //   <div className='text-center'>
+      //     <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
+      //     <button
+      //       onClick={nextQuestion}
+      //       className='px-6 py-3 bg-rimac-red text-white rounded-lg'
+      //     >
+      //       Siguiente
+      //     </button>
+      //   </div>
+      // );
       return (
         <SlideTermsConditions fnSubmit={nextQuestion}></SlideTermsConditions>
       );
+    } else if (index === 1) {
+      return (
+        <SlideInformation01
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation01>
+      );
     } else if (index === 2) {
-      return <SlideInformation01 fnSubmit={nextQuestion}></SlideInformation01>;
+      return (
+        <SlideInformation02
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation02>
+      );
+    } else if (index === 3) {
+      return (
+        <SlideInformation03
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation03>
+      );
+    } else if (index === 4) {
+      return (
+        <SlideInformation04
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation04>
+      );
+    } else if (index === 5) {
+      return (
+        <SlideInformation05
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation05>
+      );
     }
   };
   return (
-    <div className='h-screen w-3/4 flex justify-center items-center overflow-hidden bg-green-500'>
+    <div className='h-screen w-3/4 flex justify-center items-center  bg-rimac-red'>
       <AnimatePresence mode='wait'>
         <motion.div
           key={index}

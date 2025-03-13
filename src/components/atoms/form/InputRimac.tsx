@@ -1,13 +1,39 @@
 import { useState } from 'react';
 
-export const InputRimac = () => {
+interface InputRimacProps {
+  placeholder?: string;
+  value: string;
+  type: 'decimal' | 'number';
+  onChange: (value: string) => void;
+}
+export const InputRimac = ({
+  placeholder,
+  value,
+  type,
+  onChange,
+}: InputRimacProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => {
     if (value === '') {
       setIsFocused(false);
+    }
+  };
+  const handleChangeDecimal = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    if (/^\d*\.?\d*$/.test(newValue)) {
+      onChange(newValue);
+    }
+  };
+
+  const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    if (
+      /^\d*$/.test(newValue) &&
+      (newValue === '' || Number(newValue) <= 9999)
+    ) {
+      onChange(newValue);
     }
   };
 
@@ -16,7 +42,7 @@ export const InputRimac = () => {
       <input
         type='text'
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={type === 'number' ? handleChangeNumber : handleChangeDecimal}
         onFocus={handleFocus}
         onBlur={handleBlur}
         className='w-full px-4 py-4 font-br-sonoma border border-gray-300 rounded focus:outline-none focus:border-blue-500'
@@ -28,7 +54,7 @@ export const InputRimac = () => {
             : 'text-gray-500 -translate-y-1/2 top-1/2'
         }`}
       >
-        Placeholder
+        {placeholder}
       </label>
     </div>
   );

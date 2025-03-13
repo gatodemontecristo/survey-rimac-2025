@@ -2,20 +2,16 @@ import { ItemOption, ReactFormProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 import { InputSelect } from '../../atoms';
 
-const options = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3' },
-];
-
 interface SelectRimacProps extends ReactFormProps {
   itemOptions: ItemOption[];
+  placeholder: string;
 }
 export const SelectRimac = ({
   name,
   control,
   message,
   itemOptions,
+  placeholder,
 }: SelectRimacProps) => {
   return (
     <>
@@ -25,8 +21,8 @@ export const SelectRimac = ({
           control={control}
           render={({ field }) => (
             <InputSelect
-              options={options}
-              placeholder='Select an option'
+              options={itemOptions}
+              placeholder={placeholder}
               value={field.value}
               onChange={field.onChange}
             />

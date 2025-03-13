@@ -10,3 +10,11 @@ export type TailwindFontSize =
   | 'text-7xl'
   | 'text-8xl'
   | 'text-9xl';
+
+export type TailwindJustify =
+  | 'justify-start'
+  | 'justify-end'
+  | 'justify-center'
+  | 'justify-between'
+  | 'justify-around'
+  | 'justify-evenly';

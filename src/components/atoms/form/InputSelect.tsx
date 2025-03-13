@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Select from 'react-select';
 
 export interface Option {
@@ -13,12 +13,12 @@ interface InputSelectProps {
   onChange: (selectedOption: Option | null) => void;
 }
 
-export const InputSelect: React.FC<InputSelectProps> = ({
+export const InputSelect = ({
   options,
   placeholder,
   value,
   onChange,
-}) => {
+}: InputSelectProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => {
@@ -39,7 +39,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         classNamePrefix='react-select'
       />
       <label
-        className={`absolute left-4     transition-all duration-300 ease-in-out ${
+        className={`absolute left-7     transition-all duration-300 ease-in-out ${
           isFocused || value
             ? 'text-xs top-1 text-blue-500'
             : 'text-gray-500 -translate-y-1/2 top-1/2'
