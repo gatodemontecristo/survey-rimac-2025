@@ -34,3 +34,28 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
+
+.slider-thumb::-webkit-slider-thumb {
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background-color: #621fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-thumb::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  background-color: #621fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-thumb::-ms-thumb {
+  width: 30px;
+  height: 30px;
+  background-color: #621fff;
+  border-radius: 50%;
+  cursor: pointer;
+}

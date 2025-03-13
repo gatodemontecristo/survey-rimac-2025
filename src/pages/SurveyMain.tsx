@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SlideInformation03 } from '../components/organisms/SlideInformation03';
 import {
   SlideInformation01,
   SlideTermsConditions,
@@ -22,31 +23,53 @@ export const SurveyMain = () => {
     }
   };
 
+  const backQuestion = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  };
+
   const nextSlide = () => {
     if (index === 0) {
-      return (
-        <div className='text-center'>
-          <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
-          <button
-            onClick={nextQuestion}
-            className='px-6 py-3 bg-rimac-red text-white rounded-lg'
-          >
-            Siguiente
-          </button>
-        </div>
-      );
-    } else if (index === 1) {
+      // return (
+      //   <div className='text-center'>
+      //     <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
+      //     <button
+      //       onClick={nextQuestion}
+      //       className='px-6 py-3 bg-rimac-red text-white rounded-lg'
+      //     >
+      //       Siguiente
+      //     </button>
+      //   </div>
+      // );
       return (
         <SlideTermsConditions fnSubmit={nextQuestion}></SlideTermsConditions>
       );
+    } else if (index === 1) {
+      return (
+        <SlideInformation01
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation01>
+      );
     } else if (index === 2) {
-      return <SlideInformation01 fnSubmit={nextQuestion}></SlideInformation01>;
+      return (
+        <SlideInformation02
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation02>
+      );
     } else if (index === 3) {
-      return <SlideInformation02 fnSubmit={nextQuestion}></SlideInformation02>;
+      return (
+        <SlideInformation03
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation03>
+      );
     }
   };
   return (
-    <div className='h-screen w-3/4 flex justify-center items-center  bg-green-500'>
+    <div className='h-screen w-3/4 flex justify-center items-center  bg-rimac-red'>
       <AnimatePresence mode='wait'>
         <motion.div
           key={index}

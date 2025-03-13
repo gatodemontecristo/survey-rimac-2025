@@ -4,3 +4,4 @@ export * from './Question';
 export * from './SelectRimac';
 export * from './InputForm';
 export * from './AreaForm';
+export * from './SliderForm';

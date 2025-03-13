@@ -6,6 +6,9 @@ export const InfoRimac = ({
   className,
   size = 'text-xl',
 }: InfoRimacProps) => {
+  const createMarkup = (html: string) => {
+    return { __html: html.replace(/\n/g, '<br>') };
+  };
   return (
     <p
       className={clsx(
@@ -13,8 +16,7 @@ export const InfoRimac = ({
         className,
         size,
       )}
-    >
-      {text}
-    </p>
+      dangerouslySetInnerHTML={createMarkup(text)}
+    ></p>
   );
 };
