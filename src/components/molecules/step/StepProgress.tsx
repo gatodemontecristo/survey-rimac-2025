@@ -1,20 +1,25 @@
+import { useStepProgress } from '../../../store';
 import { StepCircle, StepLine } from '../../atoms';
 
 export const StepProgress = () => {
+  const { stepProgress } = useStepProgress();
   return (
     <div className='flex flex-col items-center justify-center gap-2'>
-      <StepCircle title='Sobre ti' number={1} state='active'></StepCircle>
-      <StepLine type='dotted'></StepLine>
-      <StepCircle title='Hábitos' number={2} state='inactive'></StepCircle>
-      <StepLine type='dotted'></StepLine>
-      <StepCircle
-        title='Enfermedades'
-        number={3}
-        state='completed'
-      ></StepCircle>
-      <StepLine type='dotted'></StepLine>
-
-      <StepCircle title='Familiares' number={4} state='inactive'></StepCircle>
+      {stepProgress.map((step, index) => (
+        <>
+          {index !== 0 && (
+            <StepLine
+              type={step.state === 'inactive' ? 'dotted' : 'line'}
+            ></StepLine>
+          )}
+          <StepCircle
+            title={step.title}
+            number={step.number}
+            state={step.state}
+            key={index}
+          ></StepCircle>
+        </>
+      ))}
     </div>
   );
 };

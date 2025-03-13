@@ -44,3 +44,9 @@ export interface ReactFormProps {
   control: Control<any>;
   message?: string;
 }
+
+export interface StepCircleProps {
+  title: string;
+  number: number;
+  state: 'active' | 'inactive' | 'completed';
+}

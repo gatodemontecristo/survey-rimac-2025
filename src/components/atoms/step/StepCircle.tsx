@@ -1,11 +1,6 @@
 import clsx from 'clsx';
 import { FaCheck } from 'react-icons/fa6';
-
-interface StepCircleProps {
-  title: string;
-  number: number;
-  state: 'active' | 'inactive' | 'completed';
-}
+import { StepCircleProps } from '../../../types';
 
 export const StepCircle = ({ title, number, state }: StepCircleProps) => {
   return (
