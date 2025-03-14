@@ -11,6 +11,7 @@ export interface LabelRimacProps {
   size?: TailwindFontSize;
   text: string;
   special?: string;
+  reverse?: boolean;
 }
 export interface UrlRimacProps extends UrlProps {
   className?: string;

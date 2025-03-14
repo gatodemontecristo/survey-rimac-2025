@@ -7,6 +7,7 @@ import {
   SlideInformation02,
   SlideInformation04,
   SlideInformation05,
+  SlideSuccess01,
 } from '../components';
 import { useStepProgress } from '../store';
 
@@ -47,19 +48,26 @@ export const SurveyMain = () => {
       );
     } else if (step === 3) {
       return (
+        <SlideSuccess01
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideSuccess01>
+      );
+    } else if (step === 4) {
+      return (
         <SlideInformation03
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation03>
       );
-    } else if (step === 4) {
+    } else if (step === 5) {
       return (
         <SlideInformation04
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation04>
       );
-    } else if (step === 5) {
+    } else if (step === 6) {
       return (
         <SlideInformation05
           fnSubmit={nextQuestion}

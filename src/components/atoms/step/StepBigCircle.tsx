@@ -5,7 +5,7 @@ import { StepCircleProps } from '../../../types';
 interface StepCircleSpecialProps extends StepCircleProps {
   className?: string;
 }
-export const StepCircle = ({
+export const StepBigCircle = ({
   title,
   number,
   state,
@@ -20,17 +20,17 @@ export const StepCircle = ({
     >
       <div
         className={clsx(
-          'size-[80px] flex flex-col justify-center items-center rounded-full transition-all duration-500',
+          'size-[150px] flex flex-col justify-center items-center rounded-full transition-all duration-500',
           state === 'inactive' ? 'bg-rimac-white' : 'bg-rimac-black',
           state === 'completed' && 'fade-in',
         )}
       >
         {state === 'completed' ? (
-          <FaCheck className='w-9 h-9 text-rimac-white animate-check' />
+          <FaCheck className='w-12 h-12 text-rimac-white animate-check' />
         ) : (
           <p
             className={clsx(
-              'text-4xl font-bold',
+              'text-6xl font-bold',
               state === 'inactive' ? 'text-rimac-red' : 'text-rimac-white',
             )}
           >
