@@ -3,5 +3,8 @@ export * from './SlideInformation02';
 export * from './SlideInformation03';
 export * from './SlideInformation04';
 export * from './SlideInformation05';
+export * from './SlideInformation06';
+export * from './SlideInformation07';
 export * from './SlideTermsConditions';
 export * from './SlideSuccess01';
+export * from './SlideSuccess02';
