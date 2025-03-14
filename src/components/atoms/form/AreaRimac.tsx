@@ -29,14 +29,14 @@ export const AreaRimac = ({
         maxLength={maxLength}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='w-full font-br-sonoma text-lg p-4 border border-gray-300 rounded focus:outline-none focus:border-blue-500 resize-none'
+        className='w-full font-br-sonoma px-4 pt-5 pb-3 text-xl border border-gray-300 rounded focus:outline-none focus:border-blue-500 resize-none'
         rows={4}
       />
       <label
         className={`absolute left-4  font-br-sonoma   transition-all duration-300 ease-in-out ${
           isFocused || value
-            ? 'text-xs top-1 text-blue-500'
-            : 'text-gray-500 -translate-y-1/2 top-5'
+            ? 'text-base top-1 text-blue-500'
+            : 'text-gray-500 -translate-y-1/2 top-5 text-xl'
         }`}
       >
         {placeholder}

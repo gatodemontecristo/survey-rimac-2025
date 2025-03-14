@@ -42,7 +42,26 @@ export const optionAlcohol: ItemOption[] = [
   { value: '2', label: 'Cada fin de semana' },
   { value: '3', label: '1 a 3 veces por semana' },
   { value: '4', label: '1 a 3 veces por mes' },
-  { value: '4', label: '1 a 3 veces por mes' },
-  { value: '5', label: 'En ocasiones especiales (menos de 5 veces al año)' },
-  { value: '6', label: 'Nunca' },
+  { value: '5', label: '1 a 3 veces por mes' },
+  { value: '6', label: 'En ocasiones especiales (menos de 5 veces al año)' },
+  { value: '7', label: 'Nunca' },
+];
+
+export const optionLastCheck: ItemOption[] = [
+  { value: '1', label: 'En los últimos 6 meses' },
+  { value: '2', label: 'Entre 6 meses y un año' },
+  { value: '3', label: 'Entre 1 y 2 años' },
+  { value: '4', label: 'Hace más de 2 años' },
+  { value: '4', label: 'A la fecha no he pasado por ningún chequeo médico' },
+  { value: '5', label: 'o recuerdo cuándo fue mi último chequeo médico' },
+];
+
+export const optionDiagnoses: ItemOption[] = [
+  { value: '1', label: 'Hipertensión' },
+  { value: '2', label: 'Diabetes' },
+  { value: '3', label: 'Displidemia' },
+  { value: '4', label: 'Asma' },
+  { value: '5', label: 'Artrosis' },
+  { value: '6', label: 'Otros (seleccionar)' },
+  { value: '7', label: 'Ninguna' },
 ];

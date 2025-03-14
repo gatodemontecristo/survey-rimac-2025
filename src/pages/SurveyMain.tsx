@@ -8,6 +8,9 @@ import {
   SlideInformation04,
   SlideInformation05,
   SlideSuccess01,
+  SlideSuccess02,
+  SlideInformation06,
+  SlideInformation07,
 } from '../components';
 import { useStepProgress } from '../store';
 
@@ -73,6 +76,27 @@ export const SurveyMain = () => {
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation05>
+      );
+    } else if (step === 7) {
+      return (
+        <SlideSuccess02
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideSuccess02>
+      );
+    } else if (step === 8) {
+      return (
+        <SlideInformation06
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation06>
+      );
+    } else if (step === 9) {
+      return (
+        <SlideInformation07
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideInformation07>
       );
     }
   };
