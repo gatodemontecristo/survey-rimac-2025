@@ -59,3 +59,49 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+@keyframes drawCircle {
+  0% {
+    stroke-dasharray: 0 314; /* 314 is the approximate circumference of a circle with radius 50 */
+    stroke-dashoffset: 314; /* Start from the bottom */
+  }
+  100% {
+    stroke-dasharray: 314 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-circle {
+  animation: drawCircle 2s forwards;
+  stroke-linecap: round; /* Makes the ends of the stroke rounded */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes checkMark {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.animate-check {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}

@@ -11,6 +11,7 @@ export interface LabelRimacProps {
   size?: TailwindFontSize;
   text: string;
   special?: string;
+  reverse?: boolean;
 }
 export interface UrlRimacProps extends UrlProps {
   className?: string;
@@ -43,4 +44,10 @@ export interface ReactFormProps {
   name: string;
   control: Control<any>;
   message?: string;
+}
+
+export interface StepCircleProps {
+  title: string;
+  number: number;
+  state: 'active' | 'inactive' | 'completed';
 }

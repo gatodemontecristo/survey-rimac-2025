@@ -7,77 +7,67 @@ import {
   SlideInformation02,
   SlideInformation04,
   SlideInformation05,
+  SlideSuccess01,
 } from '../components';
-
-const questions = [
-  '¿Cuál es tu comida favorita?',
-  '¿Qué te motiva cada día?',
-  '¿Prefieres gatos o perros?',
-  '¿Prefieres gatos o perros?',
-  '¿Prefieres gatos o perros?',
-  '¿Prefieres gatos o perros?',
-];
+import { useStepProgress } from '../store';
 
 export const SurveyMain = () => {
   const [index, setIndex] = useState(0);
+  const { step, actionStep } = useStepProgress();
 
   const nextQuestion = () => {
-    if (index < questions.length - 1) {
-      setIndex(index + 1);
-    }
+    actionStep(true);
+    setIndex(index + 1);
   };
 
   const backQuestion = () => {
     if (index > 0) {
+      actionStep(false);
       setIndex(index - 1);
     }
   };
 
   const nextSlide = () => {
-    if (index === 0) {
-      // return (
-      //   <div className='text-center'>
-      //     <h1 className='text-2xl font-bold mb-4'>{questions[index]}</h1>
-      //     <button
-      //       onClick={nextQuestion}
-      //       className='px-6 py-3 bg-rimac-red text-white rounded-lg'
-      //     >
-      //       Siguiente
-      //     </button>
-      //   </div>
-      // );
+    if (step === 0) {
       return (
         <SlideTermsConditions fnSubmit={nextQuestion}></SlideTermsConditions>
       );
-    } else if (index === 1) {
+    } else if (step === 1) {
       return (
         <SlideInformation01
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation01>
       );
-    } else if (index === 2) {
+    } else if (step === 2) {
       return (
         <SlideInformation02
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation02>
       );
-    } else if (index === 3) {
+    } else if (step === 3) {
+      return (
+        <SlideSuccess01
+          fnSubmit={nextQuestion}
+          fnBack={backQuestion}
+        ></SlideSuccess01>
+      );
+    } else if (step === 4) {
       return (
         <SlideInformation03
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation03>
       );
-    } else if (index === 4) {
+    } else if (step === 5) {
       return (
         <SlideInformation04
           fnSubmit={nextQuestion}
           fnBack={backQuestion}
         ></SlideInformation04>
       );
-    } else if (index === 5) {
+    } else if (step === 6) {
       return (
         <SlideInformation05
           fnSubmit={nextQuestion}
@@ -95,8 +85,13 @@ export const SurveyMain = () => {
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className=' flex justify-center items-center w-full h-full bg-white'
+          className=' flex relative justify-center items-center w-full h-full  bg-rimac-white'
         >
+          <img
+            src='../rimac-signature.svg'
+            alt='logo'
+            className='absolute top-5 right-5 w-20'
+          ></img>
           {nextSlide()}
         </motion.div>
       </AnimatePresence>

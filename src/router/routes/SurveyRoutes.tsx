@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { ButtonRimac, InputRimac } from '../../components';
+import { StepProgress } from '../../components';
 
 export const SurveyRoutes = () => {
   return (
     <div className='flex flex-row   overflow-hidden'>
-      <div className='flex flex-col w-1/4 bg-rimac-red h-screen'></div>
+      <div className='flex flex-col items-center justify-center w-1/4  h-screen bg-cover bg-center bg-[url("../banner-rimac.jpeg")]'>
+        <StepProgress></StepProgress>
+      </div>
 
       {/* <ButtonRimac text='Botón rimac' fnClick={() => {}}></ButtonRimac>
       <InputRimac></InputRimac> */}
