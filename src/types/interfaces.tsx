@@ -48,8 +48,8 @@ export interface ReactFormProps {
 
 export interface StepCircleProps {
   title: string;
-  number: number;
   state: 'active' | 'inactive' | 'completed';
+  img: string;
 }
 
 export interface SlideProps {

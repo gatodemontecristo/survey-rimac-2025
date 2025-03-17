@@ -10,8 +10,8 @@ export const SlideSuccess01 = ({ fnSubmit }: SlideSuccess01Props) => {
         <StepCompleted
           text='Has completado la primera parte'
           special='¡Excelente!'
-          number={1}
           reverse={true}
+          img='../icons/svgexport-118-dark.svg'
         ></StepCompleted>
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac text='Siguiente' fnClick={fnSubmit}></ButtonRimac>
