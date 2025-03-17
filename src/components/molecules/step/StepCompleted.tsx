@@ -4,14 +4,14 @@ import { LabelRimac, StepBigCircle } from '../../atoms';
 interface StepCompletedProps {
   text: string;
   special: string;
-  number: number;
   reverse: boolean;
+  img: string;
 }
 export const StepCompleted = ({
   text,
   special,
-  number,
   reverse,
+  img,
 }: StepCompletedProps) => {
   const [state, setState] = useState<'active' | 'completed' | 'inactive'>(
     'active',
@@ -41,8 +41,7 @@ export const StepCompleted = ({
         <StepBigCircle
           className='z-10 absolute'
           title={''}
-          number={number}
-          state={state}
+          {...{ state, img }}
         ></StepBigCircle>
       </div>
       <LabelRimac

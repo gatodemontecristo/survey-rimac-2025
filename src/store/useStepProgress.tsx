@@ -11,23 +11,23 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
   stepProgress: [
     {
       title: 'Sobre ti',
-      number: 1,
       state: 'active',
+      img: '../icons/svgexport-118.svg',
     },
     {
       title: 'Hábitos',
-      number: 2,
       state: 'inactive',
+      img: '../icons/svgexport-8.svg',
     },
     {
       title: 'Enfermedades',
-      number: 3,
       state: 'inactive',
+      img: '../icons/svgexport-2.svg',
     },
     {
       title: 'Familiares',
-      number: 4,
       state: 'inactive',
+      img: '../icons/svgexport-247.svg',
     },
   ],
   step: 0,
@@ -38,23 +38,25 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
       stepProgress: [
         {
           title: 'Sobre ti',
-          number: 1,
           state: valor < 3 ? 'active' : 'completed',
+          img: '../icons/svgexport-118.svg',
         },
         {
           title: 'Hábitos',
-          number: 2,
           state: valor >= 3 ? (valor < 7 ? 'active' : 'completed') : 'inactive',
+          img: '../icons/svgexport-8.svg',
         },
         {
           title: 'Enfermedades',
-          number: 3,
-          state: valor >= 7 ? 'active' : 'inactive',
+          state:
+            valor >= 7 ? (valor < 12 ? 'active' : 'completed') : 'inactive',
+          img: '../icons/svgexport-2.svg',
         },
         {
           title: 'Familiares',
-          number: 4,
-          state: 'inactive',
+          state:
+            valor >= 12 ? (valor < 14 ? 'active' : 'completed') : 'inactive',
+          img: '../icons/svgexport-247.svg',
         },
       ],
     });

@@ -7,10 +7,14 @@ interface StepCircleSpecialProps extends StepCircleProps {
 }
 export const StepCircle = ({
   title,
-  number,
   state,
   className,
+  img,
 }: StepCircleSpecialProps) => {
+  const formatImg = () => {
+    const imgFormat = img.split('.')[2];
+    return state === 'inactive' ? imgFormat + '.svg' : imgFormat + '-dark.svg';
+  };
   return (
     <div
       className={clsx(
@@ -28,14 +32,7 @@ export const StepCircle = ({
         {state === 'completed' ? (
           <FaCheck className='w-9 h-9 text-rimac-white animate-check' />
         ) : (
-          <p
-            className={clsx(
-              'text-4xl font-bold',
-              state === 'inactive' ? 'text-rimac-red' : 'text-rimac-white',
-            )}
-          >
-            {number}
-          </p>
+          <img src={formatImg()} alt='logo' className='size-12'></img>
         )}
       </div>
       {title.length > 0 && <p className='text-lg text-rimac-white'>{title}</p>}

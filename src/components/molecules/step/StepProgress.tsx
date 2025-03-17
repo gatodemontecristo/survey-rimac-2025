@@ -14,8 +14,8 @@ export const StepProgress = () => {
           )}
           <StepCircle
             title={step.title}
-            number={step.number}
             state={step.state}
+            img={step.img}
             key={index}
           ></StepCircle>
         </>

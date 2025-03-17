@@ -1,15 +1,18 @@
+import { ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { ButtonRimac } from '../atoms';
-import { QuestionRimac, RadioCollection } from '../molecules';
-import { optionAlcohol } from '../../constants';
+import { MultiCheckboxForm, QuestionRimac } from '../molecules';
+import { optionBackground } from '../../constants';
 import { SlideProps } from '../../types';
 
 const schema = yup.object().shape({
-  alcohol: yup.string().required('Debes seleccionar una opción'),
+  checkValues: yup
+    .array()
+    .of(yup.string())
+    .min(1, 'Debes seleccionar al menos una opción'),
 });
-export const SlideInformation05 = ({ fnSubmit }: SlideProps) => {
+export const SlideInformation10 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -17,7 +20,7 @@ export const SlideInformation05 = ({ fnSubmit }: SlideProps) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      alcohol: '',
+      checkValues: [],
     },
   });
   return (
@@ -26,14 +29,15 @@ export const SlideInformation05 = ({ fnSubmit }: SlideProps) => {
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
             size='text-2xl'
-            text='¿Con qué frecuencia bebes alcohol?'
+            text='¿Tienes antecedentes familiares directos, como madre, padre, hermanos o hijos, con alguna de las siguientes afecciones?'
           ></QuestionRimac.Label>
-          <RadioCollection
+          <QuestionRimac.Info text='Por favor seleccione todas las respuestas validas'></QuestionRimac.Info>
+
+          <MultiCheckboxForm
             {...{ control }}
-            name='alcohol'
-            itemOptions={optionAlcohol}
-            message={errors?.alcohol?.message}
-            justifyOption='justify-start'
+            name='checkValues'
+            options={optionBackground}
+            message={errors?.checkValues?.message}
           />
         </QuestionRimac>
 

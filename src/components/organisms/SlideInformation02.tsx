@@ -9,10 +9,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { ButtonRimac } from '../atoms';
 import { optionLast12 } from '../../constants';
-interface SlideInformation02Props {
-  fnBack: () => void;
-  fnSubmit: () => void;
-}
+import { SlideProps } from '../../types';
+
 const schema = yup.object().shape({
   heigh: yup.string().required('Debes ingresar tu talla (CM)'),
   weigh: yup.string().required('Debes ingresar tu peso (KG)'),
@@ -20,10 +18,7 @@ const schema = yup.object().shape({
   weightgain: yup.string().required('Debes ingresar peso subido/perdido (KG)'),
   comment: yup.string().required('Debes ingresar un motivo'),
 });
-export const SlideInformation02 = ({
-  fnSubmit,
-  fnBack,
-}: SlideInformation02Props) => {
+export const SlideInformation02 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -40,9 +35,6 @@ export const SlideInformation02 = ({
   });
   return (
     <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-20 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='w-auto flex flex-col items-start justify-start h-full py-15'>
-        <ButtonRimac isNav={true} fnClick={fnBack}></ButtonRimac>
-      </div>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-3/4'>
           <QuestionRimac.Label

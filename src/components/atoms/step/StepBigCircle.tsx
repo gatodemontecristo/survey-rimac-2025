@@ -7,9 +7,9 @@ interface StepCircleSpecialProps extends StepCircleProps {
 }
 export const StepBigCircle = ({
   title,
-  number,
   state,
   className,
+  img,
 }: StepCircleSpecialProps) => {
   return (
     <div
@@ -28,14 +28,7 @@ export const StepBigCircle = ({
         {state === 'completed' ? (
           <FaCheck className='w-12 h-12 text-rimac-white animate-check' />
         ) : (
-          <p
-            className={clsx(
-              'text-6xl font-bold',
-              state === 'inactive' ? 'text-rimac-red' : 'text-rimac-white',
-            )}
-          >
-            {number}
-          </p>
+          <img src={img} alt='logo' className='size-20'></img>
         )}
       </div>
       {title.length > 0 && <p className='text-lg text-rimac-white'>{title}</p>}

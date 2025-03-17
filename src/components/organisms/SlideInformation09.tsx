@@ -1,15 +1,16 @@
+import { ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { ButtonRimac } from '../atoms';
 import { QuestionRimac, RadioCollection } from '../molecules';
-import { optionAlcohol } from '../../constants';
+import { optionYN } from '../../constants';
 import { SlideProps } from '../../types';
 
 const schema = yup.object().shape({
-  alcohol: yup.string().required('Debes seleccionar una opción'),
+  pregnancy: yup.string().required('Debes seleccionar una opción'),
+  complications: yup.string().required('Debes seleccionar una opción'),
 });
-export const SlideInformation05 = ({ fnSubmit }: SlideProps) => {
+export const SlideInformation09 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -17,7 +18,8 @@ export const SlideInformation05 = ({ fnSubmit }: SlideProps) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      alcohol: '',
+      pregnancy: '',
+      complications: '',
     },
   });
   return (
@@ -26,14 +28,25 @@ export const SlideInformation05 = ({ fnSubmit }: SlideProps) => {
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
             size='text-2xl'
-            text='¿Con qué frecuencia bebes alcohol?'
+            text='¿Estás embarazada en este momento?'
           ></QuestionRimac.Label>
           <RadioCollection
             {...{ control }}
-            name='alcohol'
-            itemOptions={optionAlcohol}
-            message={errors?.alcohol?.message}
-            justifyOption='justify-start'
+            name='pregnancy'
+            itemOptions={optionYN}
+            message={errors?.pregnancy?.message}
+          />
+        </QuestionRimac>
+        <QuestionRimac className='mb-4 w-full'>
+          <QuestionRimac.Label
+            size='text-2xl'
+            text='¿Se presentaron complicaciones en el parto o padece de alguna condiciòn congénita?'
+          ></QuestionRimac.Label>
+          <RadioCollection
+            {...{ control }}
+            name='complications'
+            itemOptions={optionYN}
+            message={errors?.complications?.message}
           />
         </QuestionRimac>
 

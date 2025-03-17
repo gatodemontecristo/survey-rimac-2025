@@ -8,11 +8,8 @@ import {
   RadioCollection,
 } from '../molecules';
 import { optionDiagnoses, optionYN } from '../../constants';
+import { SlideProps } from '../../types';
 
-interface SlideInformation07Props {
-  fnBack: () => void;
-  fnSubmit: () => void;
-}
 const schema = yup.object().shape({
   checkValues: yup
     .array()
@@ -22,10 +19,7 @@ const schema = yup.object().shape({
   device: yup.string().required('Debes seleccionar una opción'),
   condition: yup.string().required('Debes seleccionar una opción'),
 });
-export const SlideInformation07 = ({
-  fnBack,
-  fnSubmit,
-}: SlideInformation07Props) => {
+export const SlideInformation07 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -41,9 +35,6 @@ export const SlideInformation07 = ({
   });
   return (
     <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='w-auto flex flex-col items-start justify-start h-full py-10'>
-        <ButtonRimac isNav={true} fnClick={fnBack}></ButtonRimac>
-      </div>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
