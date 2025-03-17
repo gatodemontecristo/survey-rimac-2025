@@ -4,20 +4,14 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { InputForm, QuestionRimac, RadioCollection } from '../molecules';
 import { optionCigars, optionTobacco } from '../../constants';
+import { SlideProps } from '../../types';
 
-interface SlideInformation04Props {
-  fnBack: () => void;
-  fnSubmit: () => void;
-}
 const schema = yup.object().shape({
   tobacco: yup.string().required('Debes seleccionar una opción'),
   cigars: yup.string().required('Debes seleccionar una opción'),
   fullYear: yup.string().required('Este es un campo requerido'),
 });
-export const SlideInformation04 = ({
-  fnBack,
-  fnSubmit,
-}: SlideInformation04Props) => {
+export const SlideInformation04 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -31,10 +25,7 @@ export const SlideInformation04 = ({
     },
   });
   return (
-    <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='w-auto flex flex-col items-start justify-start h-full '>
-        <ButtonRimac isNav={true} fnClick={fnBack}></ButtonRimac>
-      </div>
+    <div className='flex flex-row items-center justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label

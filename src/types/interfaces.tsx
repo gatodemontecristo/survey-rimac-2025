@@ -51,3 +51,7 @@ export interface StepCircleProps {
   number: number;
   state: 'active' | 'inactive' | 'completed';
 }
+
+export interface SlideProps {
+  fnSubmit: () => void;
+}

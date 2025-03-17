@@ -49,12 +49,14 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
         {
           title: 'Enfermedades',
           number: 3,
-          state: valor >= 7 ? 'active' : 'inactive',
+          state:
+            valor >= 7 ? (valor < 12 ? 'active' : 'completed') : 'inactive',
         },
         {
           title: 'Familiares',
           number: 4,
-          state: 'inactive',
+          state:
+            valor >= 12 ? (valor < 14 ? 'active' : 'completed') : 'inactive',
         },
       ],
     });

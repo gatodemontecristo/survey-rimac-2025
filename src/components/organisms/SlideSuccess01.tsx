@@ -1,15 +1,11 @@
 import { ButtonRimac } from '../atoms';
 import { StepCompleted } from '../molecules/step/StepCompleted';
 interface SlideSuccess01Props {
-  fnBack: () => void;
   fnSubmit: () => void;
 }
-export const SlideSuccess01 = ({ fnBack, fnSubmit }: SlideSuccess01Props) => {
+export const SlideSuccess01 = ({ fnSubmit }: SlideSuccess01Props) => {
   return (
     <div className='flex flex-row items-center justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='w-auto flex flex-col items-start justify-start h-full py-10'>
-        <ButtonRimac isNav={true} fnClick={fnBack}></ButtonRimac>
-      </div>
       <div className='flex flex-col items-start justify-start text-center gap-4 w-full'>
         <StepCompleted
           text='Has completado la primera parte'

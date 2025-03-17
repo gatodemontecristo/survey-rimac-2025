@@ -3,19 +3,13 @@ import * as yup from 'yup';
 import { QuestionRimac, SliderForm } from '../molecules';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { SlideProps } from '../../types';
 
-interface SlideInformation03Props {
-  fnBack: () => void;
-  fnSubmit: () => void;
-}
 const schema = yup.object().shape({
   activity: yup.number().min(0).max(100).required('Este campo es requerido'),
   sleep: yup.number().min(0).max(100).required('Este campo es requerido'),
 });
-export const SlideInformation03 = ({
-  fnBack,
-  fnSubmit,
-}: SlideInformation03Props) => {
+export const SlideInformation03 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -29,9 +23,6 @@ export const SlideInformation03 = ({
   });
   return (
     <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-20 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='w-auto flex flex-col items-start justify-start h-full py-15'>
-        <ButtonRimac isNav={true} fnClick={fnBack}></ButtonRimac>
-      </div>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label

@@ -5,11 +5,8 @@ import { useForm } from 'react-hook-form';
 
 import { optionCompany, optionInsurance, optionYN } from '../../constants';
 import { QuestionRimac, RadioCollection, SelectRimac } from '../molecules';
+import { SlideProps } from '../../types';
 
-interface SlideInformation01Props {
-  fnBack: () => void;
-  fnSubmit: () => void;
-}
 const schema = yup.object().shape({
   haveInsurance: yup.string().required('Debes seleccionar una opción'),
   insurance: yup.string().required('Debes seleccionar un tipo de seguro'),
@@ -19,10 +16,7 @@ const schema = yup.object().shape({
     .required('Debes seleccionar una aseguradora'),
 });
 
-export const SlideInformation01 = ({
-  fnBack,
-  fnSubmit,
-}: SlideInformation01Props) => {
+export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
   const {
     control,
     handleSubmit,
@@ -38,9 +32,6 @@ export const SlideInformation01 = ({
 
   return (
     <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-10 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='w-auto flex flex-col items-start justify-start h-full py-15'>
-        <ButtonRimac isNav={true} fnClick={fnBack}></ButtonRimac>
-      </div>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4'>
           <QuestionRimac.Label
