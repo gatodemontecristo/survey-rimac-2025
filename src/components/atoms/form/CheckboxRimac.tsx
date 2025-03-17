@@ -1,6 +1,6 @@
 import React from 'react';
 import { ItemOption } from '../../../types';
-
+import { nanoid } from 'nanoid';
 interface CheckboxRimacProps {
   options: ItemOption[];
   selectedValues: string[];
@@ -25,7 +25,7 @@ export const CheckboxRimac: React.FC<CheckboxRimacProps> = ({
   return (
     <div className='flex flex-row text-center flex-wrap space-y-2 gap-y-2 gap-x-4'>
       {options.map((option) => (
-        <label key={option.value} className='flex items-center space-x-2'>
+        <label key={nanoid()} className='flex items-center space-x-2'>
           <input
             type='checkbox'
             checked={selectedValues.includes(option.value)}

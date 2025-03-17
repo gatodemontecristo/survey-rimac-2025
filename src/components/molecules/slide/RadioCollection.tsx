@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { ItemOption, ReactFormProps, TailwindJustify } from '../../../types';
 import { RadioRimac } from '../../atoms';
 import { Controller } from 'react-hook-form';
+import { nanoid } from 'nanoid';
 
 interface RadioCollectionProps extends ReactFormProps {
   itemOptions: ItemOption[];
@@ -24,7 +25,7 @@ export const RadioCollection = ({
       >
         {itemOptions.map((itemOption) => (
           <Controller
-            key={itemOption.value}
+            key={nanoid()}
             name={name}
             control={control}
             render={({ field }) => (
