@@ -3,13 +3,13 @@ import * as yup from 'yup';
 import { QuestionRimac, SliderForm } from '../molecules';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { SlideProps } from '../../types';
+import { useStepProgress } from '../../store';
 
 const schema = yup.object().shape({
   activity: yup.number().min(0).max(100).required('Este campo es requerido'),
   sleep: yup.number().min(0).max(100).required('Este campo es requerido'),
 });
-export const SlideInformation03 = ({ fnSubmit }: SlideProps) => {
+export const SlideInformation03 = () => {
   const {
     control,
     handleSubmit,
@@ -21,6 +21,7 @@ export const SlideInformation03 = ({ fnSubmit }: SlideProps) => {
       sleep: 7,
     },
   });
+  const { nextQuestion } = useStepProgress();
   return (
     <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-20 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
@@ -63,7 +64,7 @@ export const SlideInformation03 = ({ fnSubmit }: SlideProps) => {
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(fnSubmit)}
+            fnClick={handleSubmit(nextQuestion)}
           ></ButtonRimac>
         </div>
       </div>

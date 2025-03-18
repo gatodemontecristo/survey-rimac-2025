@@ -1,22 +1,30 @@
 import { ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 
 import { optionCompany, optionInsurance, optionYN } from '../../constants';
 import { QuestionRimac, RadioCollection, SelectRimac } from '../molecules';
-import { SlideProps } from '../../types';
+import { useStepProgress } from '../../store';
 
 const schema = yup.object().shape({
   haveInsurance: yup.string().required('Debes seleccionar una opción'),
-  insurance: yup.string().required('Debes seleccionar un tipo de seguro'),
-  company: yup
-    .object()
-    .typeError('Debes seleccionar una aseguradora')
-    .required('Debes seleccionar una aseguradora'),
+  insurance: yup.string().when('haveInsurance', {
+    is: (value: string) => value === 'Y',
+    then: (schema) => schema.required('Debes seleccionar un tipo de seguro'),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  company: yup.object().when('haveInsurance', {
+    is: (value: string) => value === 'Y',
+    then: (schema) =>
+      schema
+        .required('Debes seleccionar una aseguradora')
+        .typeError('Debes seleccionar una aseguradora'),
+    otherwise: (schema) => schema.notRequired(),
+  }),
 });
 
-export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
+export const SlideInformation01 = () => {
   const {
     control,
     handleSubmit,
@@ -29,6 +37,12 @@ export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
       company: undefined,
     },
   });
+
+  const haveInsurance = useWatch({
+    control,
+    name: 'haveInsurance',
+  });
+  const { nextQuestion } = useStepProgress();
 
   return (
     <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-10 h-screen overflow-y-scroll custom-scrollbar'>
@@ -55,31 +69,32 @@ export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
           />
         </QuestionRimac>
 
-        <QuestionRimac>
-          <QuestionRimac.Label
-            size='text-2xl'
-            text='Selecciona el tipo de seguro y la aseguradora'
-          ></QuestionRimac.Label>
+        {haveInsurance === 'Y' && (
+          <QuestionRimac>
+            <QuestionRimac.Label
+              size='text-2xl'
+              text='Selecciona el tipo de seguro y la aseguradora'
+            ></QuestionRimac.Label>
 
-          <RadioCollection
-            {...{ control }}
-            name='insurance'
-            itemOptions={optionInsurance}
-            message={errors?.insurance?.message}
-          />
-          <SelectRimac
-            {...{ control }}
-            name='company'
-            itemOptions={optionCompany}
-            message={errors?.company?.message}
-            placeholder='Selecciona una aseguradora'
-          ></SelectRimac>
-        </QuestionRimac>
-
+            <RadioCollection
+              {...{ control }}
+              name='insurance'
+              itemOptions={optionInsurance}
+              message={errors?.insurance?.message}
+            />
+            <SelectRimac
+              {...{ control }}
+              name='company'
+              itemOptions={optionCompany}
+              message={errors?.company?.message}
+              placeholder='Selecciona una aseguradora'
+            ></SelectRimac>
+          </QuestionRimac>
+        )}
         <div className='flex flex-row justify-end w-full mt-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(fnSubmit)}
+            fnClick={handleSubmit(nextQuestion)}
           ></ButtonRimac>
         </div>
       </div>
