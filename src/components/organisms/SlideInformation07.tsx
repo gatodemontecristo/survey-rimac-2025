@@ -1,46 +1,74 @@
 import { ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import {
-  MultiCheckboxForm,
-  QuestionRimac,
-  RadioCollection,
-} from '../molecules';
-import { optionDiagnoses, optionYN } from '../../constants';
+import { useForm, useWatch } from 'react-hook-form';
+import { MultiCheckboxForm, QuestionRimac, SelectRimac } from '../molecules';
+import { anotherOptions, optionDiagnoses } from '../../constants';
 import { useStepProgress } from '../../store';
+import { useEffect } from 'react';
 
 const schema = yup.object().shape({
   checkValues: yup
     .array()
     .of(yup.string())
     .min(1, 'Debes seleccionar al menos una opción'),
-  surgeon: yup.string().required('Debes seleccionar una opción'),
-  device: yup.string().required('Debes seleccionar una opción'),
-  condition: yup.string().required('Debes seleccionar una opción'),
+  additional: yup.object().when('checkValues', {
+    is: (value: string[]) => value.find((e) => e === '6'),
+    then: (schema) =>
+      schema
+        .required('Debes seleccionar una opción')
+        .typeError('Debes seleccionar una opción'),
+    otherwise: (schema) => schema.notRequired(),
+  }),
 });
 export const SlideInformation07 = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
       checkValues: [],
-      surgeon: '',
-      device: '',
-      condition: '',
+      additional: undefined,
     },
   });
-  const { nextQuestion } = useStepProgress();
+  const { addSlide, nextQuestion } = useStepProgress();
+
+  const checkValues = useWatch({
+    control,
+    name: 'checkValues',
+  });
+  const handleAddSlide = () => {
+    checkValues && !checkValues.includes('7') && addSlide();
+    nextQuestion();
+  };
+  useEffect(() => {
+    if (checkValues && checkValues?.length > 1) {
+      if (checkValues[checkValues.length - 1] === '7') {
+        setValue('checkValues', ['7']);
+        return;
+      } else if (
+        checkValues[checkValues.length - 1] !== '7' &&
+        checkValues.includes('7')
+      ) {
+        setValue(
+          'checkValues',
+          checkValues.filter((item) => item !== '7'),
+        );
+        return;
+      }
+    }
+  }, [checkValues]);
+
   return (
-    <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
+    <div className='flex flex-row items-center justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
             size='text-2xl'
-            text='En los últimos 10 años, ¿para cuáles de estas afecciones le hadiagnosticado o tratado un profesional médico autorizado?'
+            text='En los últimos 10 años, ¿para cuáles de estas afecciones le ha diagnosticado o tratado un profesional médico autorizado?'
           ></QuestionRimac.Label>
           <QuestionRimac.Info text='Por favor sellecione todas las respuestas válidas.'></QuestionRimac.Info>
           <MultiCheckboxForm
@@ -50,49 +78,21 @@ export const SlideInformation07 = () => {
             message={errors?.checkValues?.message}
           />
         </QuestionRimac>
-        <QuestionRimac className='mb-4 w-full'>
-          <QuestionRimac.Label
-            size='text-2xl'
-            text='¿Se ha sometido a una cirugía a raíz de esta condición/codidiciones?'
-          ></QuestionRimac.Label>
-          <RadioCollection
-            {...{ control }}
-            name='surgeon'
-            itemOptions={optionYN}
-            message={errors?.surgeon?.message}
-          />
-        </QuestionRimac>
-        <QuestionRimac className='mb-4 w-full'>
-          <QuestionRimac.Label
-            size='text-2xl'
-            text='¿Cuenta con añgún dispositivo médico o prótesis a raíz de esta operación?'
-          ></QuestionRimac.Label>
-          <QuestionRimac.Info text='Puede ser a nivel articular como hombro, rodilla o cadera, a nivel cardíaco como un marcapasos o stent coronario, o a nivel columna como una caja intersomática, clavos o tornillos.'></QuestionRimac.Info>
-          <RadioCollection
-            {...{ control }}
-            name='device'
-            itemOptions={optionYN}
-            message={errors?.surgeon?.message}
-          />
-        </QuestionRimac>
 
-        <QuestionRimac className='mb-4 w-full'>
-          <QuestionRimac.Label
-            size='text-2xl'
-            text='¿Ha sido hospitalizado a raíz de esta condición/condiciones?'
-          ></QuestionRimac.Label>
-          <RadioCollection
+        {checkValues && checkValues.includes('6') && (
+          <SelectRimac
             {...{ control }}
-            name='condition'
-            itemOptions={optionYN}
-            message={errors?.condition?.message}
-          />
-        </QuestionRimac>
+            name='additional'
+            itemOptions={anotherOptions}
+            message={errors?.additional?.message}
+            placeholder='Selecciona un diagnóstico'
+          ></SelectRimac>
+        )}
 
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(nextQuestion)}
+            fnClick={handleSubmit(handleAddSlide)}
           ></ButtonRimac>
         </div>
       </div>

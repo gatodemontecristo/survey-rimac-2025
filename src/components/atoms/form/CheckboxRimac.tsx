@@ -23,14 +23,14 @@ export const CheckboxRimac: React.FC<CheckboxRimacProps> = ({
   };
 
   return (
-    <div className='flex flex-row text-center flex-wrap space-y-2 gap-y-2 gap-x-4'>
+    <div className='flex flex-row text-center flex-wrap space-y-2 gap-x-7 gap-y-1'>
       {options.map((option) => (
         <label key={nanoid()} className='flex items-center space-x-2'>
           <input
             type='checkbox'
             checked={selectedValues.includes(option.value)}
             onChange={() => handleChange(option.value)}
-            className='form-checkbox h-5 w-5 text-blue-600'
+            className='form-checkbox h-6 w-6 text-blue-600'
           />
           <span className='text-rimac-black'>{option.label}</span>
         </label>

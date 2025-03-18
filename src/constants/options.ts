@@ -62,7 +62,7 @@ export const optionDiagnoses: ItemOption[] = [
   { value: '3', label: 'Displidemia' },
   { value: '4', label: 'Asma' },
   { value: '5', label: 'Artrosis' },
-  { value: '6', label: 'Otros (seleccionar)' },
+  { value: '6', label: 'Otros' },
   { value: '7', label: 'Ninguna' },
 ];
 

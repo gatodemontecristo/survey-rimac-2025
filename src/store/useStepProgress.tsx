@@ -16,6 +16,7 @@ import {
   SlideSuccess03,
   SlideInformation10,
   SlideFinish,
+  SlideAdditional,
 } from '../components';
 
 export interface useStepProgressProps {
@@ -28,6 +29,8 @@ export interface useStepProgressProps {
   nextQuestion: () => void;
   backQuestion: () => void;
   nextSlide: () => JSX.Element | null;
+  addSlide: () => void;
+  removeSlide: () => void;
 }
 
 export const useStepProgress = create<useStepProgressProps>((set, get) => ({
@@ -111,13 +114,38 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
     setIndexSlide(step + 1);
   },
   backQuestion: () => {
-    const { step, setIndexSlide, actionStep } = get();
+    const { step, setIndexSlide, actionStep, slides, removeSlide, indexSlide } =
+      get();
     if (step > 0) {
+      console.log('slides', Object.keys(slides).length);
+      console.log('indexSlide', indexSlide);
+      Object.keys(slides).length === 16 && indexSlide === 10 && removeSlide();
       actionStep(false);
       setIndexSlide(step - 1);
     }
   },
   nextSlide: () => {
     return get().slides[get().step] || null;
+  },
+  addSlide: () => {
+    const { slides } = get();
+    const updatedSlides = { ...slides };
+
+    for (let i = Object.keys(updatedSlides).length - 1; i >= 10; i--) {
+      updatedSlides[i + 1] = updatedSlides[i];
+    }
+    updatedSlides[10] = <SlideAdditional></SlideAdditional>;
+    set({ slides: updatedSlides });
+  },
+  removeSlide: () => {
+    const { slides } = get();
+    const updatedSlides = { ...slides };
+    delete updatedSlides[10];
+    for (let i = 11; i < Object.keys(updatedSlides).length; i++) {
+      updatedSlides[i - 1] = updatedSlides[i];
+    }
+    delete updatedSlides[Object.keys(updatedSlides).length - 1];
+
+    set({ slides: updatedSlides });
   },
 }));

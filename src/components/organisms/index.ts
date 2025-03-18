@@ -9,6 +9,7 @@ export * from './SlideInformation08';
 export * from './SlideInformation09';
 export * from './SlideInformation10';
 export * from './SlideTermsConditions';
+export * from './SlideAdditional';
 export * from './SlideSuccess01';
 export * from './SlideSuccess02';
 export * from './SlideSuccess03';
