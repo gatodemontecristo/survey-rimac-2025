@@ -5,7 +5,7 @@ import { useForm, useWatch } from 'react-hook-form';
 
 import { optionCompany, optionInsurance, optionYN } from '../../constants';
 import { QuestionRimac, RadioCollection, SelectRimac } from '../molecules';
-import { SlideProps } from '../../types';
+import { useStepProgress } from '../../store';
 
 const schema = yup.object().shape({
   haveInsurance: yup.string().required('Debes seleccionar una opción'),
@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   }),
 });
 
-export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
+export const SlideInformation01 = () => {
   const {
     control,
     handleSubmit,
@@ -42,6 +42,7 @@ export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
     control,
     name: 'haveInsurance',
   });
+  const { nextQuestion } = useStepProgress();
 
   return (
     <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-10 h-screen overflow-y-scroll custom-scrollbar'>
@@ -93,7 +94,7 @@ export const SlideInformation01 = ({ fnSubmit }: SlideProps) => {
         <div className='flex flex-row justify-end w-full mt-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(fnSubmit)}
+            fnClick={handleSubmit(nextQuestion)}
           ></ButtonRimac>
         </div>
       </div>

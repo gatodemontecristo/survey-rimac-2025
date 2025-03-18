@@ -52,8 +52,8 @@ export const optionLastCheck: ItemOption[] = [
   { value: '2', label: 'Entre 6 meses y un año' },
   { value: '3', label: 'Entre 1 y 2 años' },
   { value: '4', label: 'Hace más de 2 años' },
-  { value: '4', label: 'A la fecha no he pasado por ningún chequeo médico' },
-  { value: '5', label: 'o recuerdo cuándo fue mi último chequeo médico' },
+  { value: '5', label: 'A la fecha no he pasado por ningún chequeo médico' },
+  { value: '6', label: 'o recuerdo cuándo fue mi último chequeo médico' },
 ];
 
 export const optionDiagnoses: ItemOption[] = [

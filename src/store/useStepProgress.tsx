@@ -1,10 +1,33 @@
 import { create } from 'zustand';
 import { StepCircleProps } from '../types';
+import {
+  SlideInformation01,
+  SlideTermsConditions,
+  SlideInformation02,
+  SlideInformation03,
+  SlideInformation04,
+  SlideInformation05,
+  SlideSuccess01,
+  SlideSuccess02,
+  SlideInformation06,
+  SlideInformation07,
+  SlideInformation08,
+  SlideInformation09,
+  SlideSuccess03,
+  SlideInformation10,
+  SlideFinish,
+} from '../components';
 
 export interface useStepProgressProps {
   stepProgress: StepCircleProps[];
   step: number;
+  slides: { [key: number]: JSX.Element };
+  indexSlide: number;
   actionStep: (isMore: boolean) => void;
+  setIndexSlide: (indexSlide: number) => void;
+  nextQuestion: () => void;
+  backQuestion: () => void;
+  nextSlide: () => JSX.Element | null;
 }
 
 export const useStepProgress = create<useStepProgressProps>((set, get) => ({
@@ -31,6 +54,24 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
     },
   ],
   step: 0,
+  slides: {
+    0: <SlideTermsConditions />,
+    1: <SlideInformation01 />,
+    2: <SlideInformation02 />,
+    3: <SlideSuccess01 />,
+    4: <SlideInformation03 />,
+    5: <SlideInformation04 />,
+    6: <SlideInformation05 />,
+    7: <SlideSuccess02 />,
+    8: <SlideInformation06 />,
+    9: <SlideInformation07 />,
+    10: <SlideInformation08 />,
+    11: <SlideInformation09 />,
+    12: <SlideSuccess03 />,
+    13: <SlideInformation10 />,
+    14: <SlideFinish />,
+  },
+  indexSlide: 0,
   actionStep: (isMore) => {
     const valor = isMore ? get().step + 1 : get().step - 1;
     set({ step: valor });
@@ -60,5 +101,23 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
         },
       ],
     });
+  },
+  setIndexSlide: (indexSlide) => {
+    set({ indexSlide });
+  },
+  nextQuestion: () => {
+    const { step, setIndexSlide, actionStep } = get();
+    actionStep(true);
+    setIndexSlide(step + 1);
+  },
+  backQuestion: () => {
+    const { step, setIndexSlide, actionStep } = get();
+    if (step > 0) {
+      actionStep(false);
+      setIndexSlide(step - 1);
+    }
+  },
+  nextSlide: () => {
+    return get().slides[get().step] || null;
   },
 }));

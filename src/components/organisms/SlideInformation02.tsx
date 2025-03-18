@@ -9,12 +9,12 @@ import { useForm, useWatch } from 'react-hook-form';
 import * as yup from 'yup';
 import { ButtonRimac } from '../atoms';
 import { optionLast12 } from '../../constants';
-import { SlideProps } from '../../types';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { fnCalculateIMC } from '../../utils';
+import { useStepProgress } from '../../store';
 
-export const SlideInformation02 = ({ fnSubmit }: SlideProps) => {
+export const SlideInformation02 = () => {
   const [enableExtra, setEnableExtra] = useState<boolean>(false);
   const schema = yup.object().shape({
     heigh: yup.string().required('Debes ingresar tu talla (CM)'),
@@ -81,7 +81,7 @@ export const SlideInformation02 = ({ fnSubmit }: SlideProps) => {
       setEnableExtra(false);
     }
   }, [weigh, heigh]);
-
+  const { nextQuestion } = useStepProgress();
   return (
     <div
       className={clsx(
@@ -163,7 +163,7 @@ export const SlideInformation02 = ({ fnSubmit }: SlideProps) => {
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(fnSubmit)}
+            fnClick={handleSubmit(nextQuestion)}
           ></ButtonRimac>
         </div>
       </div>
