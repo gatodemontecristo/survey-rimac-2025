@@ -26,7 +26,7 @@ export const SlideAdditional = () => {
   });
   const { nextQuestion } = useStepProgress();
   return (
-    <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
+    <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-15 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
@@ -50,7 +50,7 @@ export const SlideAdditional = () => {
             {...{ control }}
             name='device'
             itemOptions={optionYN}
-            message={errors?.surgeon?.message}
+            message={errors?.device?.message}
           />
         </QuestionRimac>
 

@@ -71,7 +71,7 @@ export const optionDisability: ItemOption[] = [
   { value: '2', label: 'Depresión' },
   { value: '3', label: 'Alcoholismo' },
   { value: '4', label: 'Esquizofrenia' },
-  { value: '5', label: 'Otra condición (seleccionar)' },
+  { value: '5', label: 'Otra condición' },
   { value: '6', label: 'Ninguno de esos' },
 ];
 
@@ -83,5 +83,5 @@ export const optionBackground: ItemOption[] = [
   { value: '5', label: 'Artrosis' },
   { value: '6', label: 'Cancer de mama u ovarios' },
   { value: '7', label: 'Cancer de prostata o pulmón' },
-  { value: '8', label: 'Otros (seleccionar)' },
+  { value: '8', label: 'Otros' },
 ];
