@@ -45,14 +45,18 @@ export const InputRimac = ({
         onChange={type === 'number' ? handleChangeNumber : handleChangeDecimal}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='w-full px-4 pt-5 pb-3 text-xl font-br-sonoma border border-gray-300 rounded focus:outline-none focus:border-blue-500'
+        className='w-full px-4 pt-5 pb-3 text-xl  font-br-sonoma border border-gray-300 rounded focus:outline-none focus:border-blue-500'
       />
       <label
-        className={`absolute left-4  font-br-sonoma   transition-all duration-300 ease-in-out ${
+        className={`absolute left-4  font-br-sonoma  transition-all duration-300 ease-in-out ${
           isFocused || value
             ? 'text-base top-1 text-blue-500'
             : 'text-gray-500 -translate-y-1/2 top-1/2 text-xl'
         }`}
+        style={{
+          pointerEvents: 'none',
+          userSelect: 'none',
+        }}
       >
         {placeholder}
       </label>

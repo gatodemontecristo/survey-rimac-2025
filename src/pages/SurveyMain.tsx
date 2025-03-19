@@ -4,8 +4,9 @@ import { useStepProgress } from '../store';
 import { ButtonRimac } from '../components';
 
 export const SurveyMain = () => {
-  const { step, backQuestion, nextSlide, indexSlide } = useStepProgress();
-
+  const { step, backQuestion, nextSlide, indexSlide, slides } =
+    useStepProgress();
+  const sum = Object.keys(slides).length === 16 ? 1 : 0;
   return (
     <div className='h-screen w-3/4 flex justify-center items-center  bg-rimac-red'>
       <AnimatePresence mode='wait'>
@@ -22,7 +23,7 @@ export const SurveyMain = () => {
             alt='logo'
             className='absolute top-5 right-5 w-20'
           ></img>
-          {step !== 0 && step !== 14 && (
+          {step !== 0 && step !== 14 + sum && (
             <div className='py-10 absolute top-0 left-20 w-auto'>
               <ButtonRimac isNav={true} fnClick={backQuestion}></ButtonRimac>
             </div>

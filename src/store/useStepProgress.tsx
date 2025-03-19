@@ -16,6 +16,7 @@ import {
   SlideSuccess03,
   SlideInformation10,
   SlideFinish,
+  SlideAdditional,
 } from '../components';
 
 export interface useStepProgressProps {
@@ -28,6 +29,8 @@ export interface useStepProgressProps {
   nextQuestion: () => void;
   backQuestion: () => void;
   nextSlide: () => JSX.Element | null;
+  addSlide: () => void;
+  removeSlide: () => void;
 }
 
 export const useStepProgress = create<useStepProgressProps>((set, get) => ({
@@ -73,6 +76,8 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
   },
   indexSlide: 0,
   actionStep: (isMore) => {
+    const { slides } = get();
+    const sum = Object.keys(slides).length === 16 ? 1 : 0;
     const valor = isMore ? get().step + 1 : get().step - 1;
     set({ step: valor });
     set({
@@ -90,13 +95,21 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
         {
           title: 'Enfermedades',
           state:
-            valor >= 7 ? (valor < 12 ? 'active' : 'completed') : 'inactive',
+            valor >= 7
+              ? valor < 12 + sum
+                ? 'active'
+                : 'completed'
+              : 'inactive',
           img: '../icons/svgexport-2.svg',
         },
         {
           title: 'Familiares',
           state:
-            valor >= 12 ? (valor < 14 ? 'active' : 'completed') : 'inactive',
+            valor >= 12 + sum
+              ? valor < 14 + sum
+                ? 'active'
+                : 'completed'
+              : 'inactive',
           img: '../icons/svgexport-247.svg',
         },
       ],
@@ -111,13 +124,36 @@ export const useStepProgress = create<useStepProgressProps>((set, get) => ({
     setIndexSlide(step + 1);
   },
   backQuestion: () => {
-    const { step, setIndexSlide, actionStep } = get();
+    const { step, setIndexSlide, actionStep, slides, removeSlide, indexSlide } =
+      get();
     if (step > 0) {
+      Object.keys(slides).length === 16 && indexSlide === 10 && removeSlide();
       actionStep(false);
       setIndexSlide(step - 1);
     }
   },
   nextSlide: () => {
     return get().slides[get().step] || null;
+  },
+  addSlide: () => {
+    const { slides } = get();
+    const updatedSlides = { ...slides };
+
+    for (let i = Object.keys(updatedSlides).length - 1; i >= 10; i--) {
+      updatedSlides[i + 1] = updatedSlides[i];
+    }
+    updatedSlides[10] = <SlideAdditional></SlideAdditional>;
+    set({ slides: updatedSlides });
+  },
+  removeSlide: () => {
+    const { slides } = get();
+    const updatedSlides = { ...slides };
+    delete updatedSlides[10];
+    for (let i = 11; i < Object.keys(updatedSlides).length; i++) {
+      updatedSlides[i - 1] = updatedSlides[i];
+    }
+    delete updatedSlides[Object.keys(updatedSlides).length - 1];
+
+    set({ slides: updatedSlides });
   },
 }));

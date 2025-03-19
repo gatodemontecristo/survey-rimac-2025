@@ -22,7 +22,7 @@ export const InputSelect = ({
   const [isFocused, setIsFocused] = useState(false);
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => {
-    if (value?.value === '') {
+    if (value?.value === '' || !value?.value) {
       setIsFocused(false);
     }
   };
@@ -35,15 +35,19 @@ export const InputSelect = ({
         placeholder=''
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='w-full  rounded focus:outline-none focus:border-blue-500 border-none'
+        className='w-full  rounded  font-br-sonoma  text-xl  focus:outline-none focus:border-blue-500 border-none'
         classNamePrefix='react-select'
       />
       <label
-        className={`absolute left-7     transition-all duration-300 ease-in-out ${
+        className={`absolute left-7   font-br-sonoma   transition-all duration-300 ease-in-out ${
           isFocused || value
-            ? 'text-xs top-1 text-blue-500'
-            : 'text-gray-500 -translate-y-1/2 top-1/2'
+            ? 'text-sm   top-1 text-blue-500'
+            : 'text-gray-500 -translate-y-1/2 top-1/2 text-xl '
         }`}
+        style={{
+          pointerEvents: 'none',
+          userSelect: 'none',
+        }}
       >
         {placeholder}
       </label>
