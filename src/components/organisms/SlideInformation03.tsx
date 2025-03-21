@@ -32,7 +32,7 @@ export const SlideInformation03 = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const textLabel = isMobile ? 'text-xl' : 'text-2xl';
   return (
-    <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-20 md:pr-15 pr-0 h-screen overflow-y-scroll custom-scrollbar'>
+    <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-20 md:pr-15 pr-0 h-screen md:overflow-y-scroll overflow-y-visible custom-scrollbar'>
       <div className='flex flex-col items-start justify-start md:text-justify text-start   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
