@@ -5,7 +5,7 @@ import { StepCircle, StepLine } from '../../atoms';
 export const StepHorizontal = () => {
   const { stepProgress } = useStepProgress();
   return (
-    <div className='flex flex-row items-center justify-center md:gap-2 gap-1 w-full'>
+    <div className='flex flex-row items-center justify-center md:gap-2 gap-0 w-full'>
       {stepProgress.map((step, index) => (
         <Fragment key={index}>
           {index !== 0 && (

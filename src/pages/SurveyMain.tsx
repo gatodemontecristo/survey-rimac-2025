@@ -66,7 +66,7 @@ export const SurveyMain = () => {
             className='absolute top-5 right-5 w-16 md:w-20'
           ></img>
           {step !== 0 && step !== 14 + sum && (
-            <div className='md:py-10 py-5 absolute top-0 md:left-20 left-10 w-auto'>
+            <div className='md:py-10 py-5 absolute top-0 md:left-20 left-5 w-auto'>
               <ButtonRimac isNav={true} fnClick={backQuestion}></ButtonRimac>
             </div>
           )}

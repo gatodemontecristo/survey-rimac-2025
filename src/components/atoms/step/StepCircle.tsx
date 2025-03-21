@@ -30,7 +30,7 @@ export const StepCircle = ({
         )}
       >
         {state === 'completed' ? (
-          <FaCheck className='w-9 h-9 text-rimac-white animate-check' />
+          <FaCheck className='md:w-9 w-6 md:h-9 h-6 text-rimac-white animate-check' />
         ) : (
           <img src={formatImg()} alt='logo' className='size-8 md:size-12'></img>
         )}

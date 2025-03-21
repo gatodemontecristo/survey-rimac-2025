@@ -1,4 +1,4 @@
-import { ButtonRimac } from '../atoms';
+import { ButtomMobile, ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, useWatch } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { MultiCheckboxForm, QuestionRimac, SelectRimac } from '../molecules';
 import { anotherOptions, optionDiagnoses } from '../../constants';
 import { useFormData, useStepProgress } from '../../store';
 import { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const schema = yup.object().shape({
   checkDiagnoses: yup
@@ -66,12 +67,14 @@ export const SlideInformation07 = () => {
     }
   }, [checkValues]);
 
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const textLabel = isMobile ? 'text-xl' : 'text-2xl';
   return (
-    <div className='flex flex-row items-center justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
+    <div className='flex flex-row items-center justify-center w-4/5 gap-4 md:py-10 py-20 md:pr-15 pr-0 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className=' w-full'>
           <QuestionRimac.Label
-            size='text-2xl'
+            size={textLabel}
             text='En los últimos 10 años, ¿para cuáles de estas afecciones le ha diagnosticado o tratado un profesional médico autorizado?'
           ></QuestionRimac.Label>
           <QuestionRimac.Info text='Por favor sellecione todas las respuestas válidas.'></QuestionRimac.Info>
@@ -93,11 +96,17 @@ export const SlideInformation07 = () => {
           ></SelectRimac>
         )}
 
-        <div className='flex flex-row justify-end w-full mt-10 pe-10'>
+        <div className='md:flex hidden flex-row justify-end w-full md:mt-10 mt-5'>
           <ButtonRimac
             text='Siguiente'
             fnClick={handleSubmit(handleAddSlide)}
           ></ButtonRimac>
+        </div>
+        <div className='bottom-0 left-0 fixed flex md:hidden flex-row justify-center w-full'>
+          <ButtomMobile
+            text='Siguiente'
+            fnClick={handleSubmit(handleAddSlide)}
+          ></ButtomMobile>
         </div>
       </div>
     </div>
