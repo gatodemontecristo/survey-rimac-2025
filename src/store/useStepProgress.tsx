@@ -2,64 +2,69 @@ import { create } from 'zustand';
 import { StepCircleProps } from '../types';
 import { persist } from 'zustand/middleware';
 
-export interface useStepProgressProps {
+export interface useStepProgressState {
   stepProgress: StepCircleProps[];
   step: number;
   slides: { [key: number]: string };
   indexSlide: number;
+}
+const initialState: useStepProgressState = {
+  stepProgress: [
+    {
+      title: 'Sobre ti',
+      state: 'active',
+      img: '../icons/svgexport-118.svg',
+    },
+    {
+      title: 'Hábitos',
+      state: 'inactive',
+      img: '../icons/svgexport-8.svg',
+    },
+    {
+      title: 'Enfermedades',
+      state: 'inactive',
+      img: '../icons/svgexport-2.svg',
+    },
+    {
+      title: 'Familiares',
+      state: 'inactive',
+      img: '../icons/svgexport-247.svg',
+    },
+  ],
+  step: 0,
+  slides: {
+    0: 'SlideTermsConditions',
+    1: 'SlideInformation01',
+    2: 'SlideInformation02',
+    3: 'SlideSuccess01',
+    4: 'SlideInformation03',
+    5: 'SlideInformation04',
+    6: 'SlideInformation05',
+    7: 'SlideSuccess02',
+    8: 'SlideInformation06',
+    9: 'SlideInformation07',
+    10: 'SlideInformation08',
+    11: 'SlideInformation09',
+    12: 'SlideSuccess03',
+    13: 'SlideInformation10',
+    14: 'SlideFinish',
+  },
+  indexSlide: 0,
+};
+export interface useStepProgressAction {
   actionStep: (isMore: boolean) => void;
   setIndexSlide: (indexSlide: number) => void;
   nextQuestion: () => void;
   backQuestion: () => void;
-  // nextSlide: () => JSX.Element | null;
   addSlide: () => void;
   removeSlide: () => void;
+  resetStepProgress: () => void;
 }
 
 export const useStepProgress = create(
-  persist<useStepProgressProps>(
+  persist<useStepProgressState & useStepProgressAction>(
     (set, get) => ({
-      stepProgress: [
-        {
-          title: 'Sobre ti',
-          state: 'active',
-          img: '../icons/svgexport-118.svg',
-        },
-        {
-          title: 'Hábitos',
-          state: 'inactive',
-          img: '../icons/svgexport-8.svg',
-        },
-        {
-          title: 'Enfermedades',
-          state: 'inactive',
-          img: '../icons/svgexport-2.svg',
-        },
-        {
-          title: 'Familiares',
-          state: 'inactive',
-          img: '../icons/svgexport-247.svg',
-        },
-      ],
-      step: 0,
-      slides: {
-        0: 'SlideTermsConditions',
-        1: 'SlideInformation01',
-        2: 'SlideInformation02',
-        3: 'SlideSuccess01',
-        4: 'SlideInformation03',
-        5: 'SlideInformation04',
-        6: 'SlideInformation05',
-        7: 'SlideSuccess02',
-        8: 'SlideInformation06',
-        9: 'SlideInformation07',
-        10: 'SlideInformation08',
-        11: 'SlideInformation09',
-        12: 'SlideSuccess03',
-        13: 'SlideInformation10',
-        14: 'SlideFinish',
-      },
-      indexSlide: 0,
+      ...initialState,
       actionStep: (isMore) => {
         const { slides } = get();
         const sum = Object.keys(slides).length === 16 ? 1 : 0;
@@ -149,6 +154,10 @@ export const useStepProgress = create(
         delete updatedSlides[Object.keys(updatedSlides).length - 1];
 
         set({ slides: updatedSlides });
+      },
+      resetStepProgress: () => {
+        set(initialState);
+        localStorage.removeItem('step-progress');
       },
     }),
     {
