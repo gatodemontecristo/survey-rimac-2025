@@ -7,12 +7,13 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, useWatch } from 'react-hook-form';
 import * as yup from 'yup';
-import { ButtonRimac } from '../atoms';
+import { ButtomMobile, ButtonRimac } from '../atoms';
 import { optionLast12 } from '../../constants';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { fnCalculateIMC } from '../../utils';
 import { useFormData, useStepProgress } from '../../store';
+import { useMediaQuery } from 'react-responsive';
 
 export const SlideInformation02 = () => {
   const { saveFormData, formData } = useFormData();
@@ -87,33 +88,36 @@ export const SlideInformation02 = () => {
     saveFormData(getValues());
     nextQuestion();
   };
+
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const textLabel = isMobile ? 'text-xl' : 'text-2xl';
   return (
     <div
       className={clsx(
-        'flex flex-row justify-center w-4/5 gap-4 py-20 h-screen overflow-y-scroll custom-scrollbar',
+        'flex flex-row justify-center w-4/5 gap-4 py-18 md:py-20  h-screen overflow-y-scroll custom-scrollbar',
         enableExtra ? 'items-start' : 'items-center',
       )}
     >
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-3/4'>
           <QuestionRimac.Label
-            size='text-2xl'
+            size={textLabel}
             text='¿Cuál es tu talla y peso?'
           ></QuestionRimac.Label>
-          <div className='flex flex-row items-start flex-wrap gap-4'>
+          <div className='flex flex-row items-start flex-wrap md:gap-4 gap-2'>
             <InputForm
               {...{ control }}
               name='heigh'
               message={errors?.heigh?.message}
               placeholder='Estatura (CM)'
-              className='w-[40%]'
+              className='md:w-[40%] w-[75%]'
             />
             <InputForm
               {...{ control }}
               name='weigh'
               message={errors?.weigh?.message}
               placeholder='Peso (KG)'
-              className='w-[40%]'
+              className='md:w-[40%] w-[75%]'
             />
           </div>
         </QuestionRimac>
@@ -121,7 +125,7 @@ export const SlideInformation02 = () => {
           <>
             <QuestionRimac className='mb-4'>
               <QuestionRimac.Label
-                size='text-2xl'
+                size={textLabel}
                 text='¿Cómo ha cambiado su peso en los últimos 12 meses?'
               ></QuestionRimac.Label>
 
@@ -135,7 +139,7 @@ export const SlideInformation02 = () => {
 
             <QuestionRimac className='mb-4'>
               <QuestionRimac.Label
-                size='text-2xl'
+                size={textLabel}
                 text='Aproximadamente, ¿cuánto kilogramos subiste/perdiste?'
               ></QuestionRimac.Label>
 
@@ -147,9 +151,9 @@ export const SlideInformation02 = () => {
                 className='w-2/3'
               />
             </QuestionRimac>
-            <QuestionRimac className='mb-4 w-3/4'>
+            <QuestionRimac className='mb-4 md:w-3/4 w-full'>
               <QuestionRimac.Label
-                size='text-2xl'
+                size={textLabel}
                 text='Motivo del cambio de peso:'
               ></QuestionRimac.Label>
 
@@ -165,11 +169,17 @@ export const SlideInformation02 = () => {
           </>
         )}
 
-        <div className='flex flex-row justify-end w-full mt-10 pe-10'>
+        <div className='md:flex hidden flex-row justify-end w-full md:mt-10 mt-5'>
           <ButtonRimac
             text='Siguiente'
             fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
+        </div>
+        <div className='bottom-0 left-0 fixed flex md:hidden flex-row justify-center w-full'>
+          <ButtomMobile
+            text='Siguiente'
+            fnClick={handleSubmit(onSubmit)}
+          ></ButtomMobile>
         </div>
       </div>
     </div>

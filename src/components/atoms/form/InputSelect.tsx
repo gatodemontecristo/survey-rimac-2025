@@ -40,7 +40,7 @@ export const InputSelect = ({
         required={false}
       />
       <label
-        className={`absolute left-7   font-br-sonoma   transition-all duration-300 ease-in-out ${
+        className={`absolute left-7    font-br-sonoma   transition-all duration-300 ease-in-out ${
           isFocused || value
             ? 'text-sm   top-1 text-blue-500'
             : 'text-gray-500 -translate-y-1/2 top-1/2 md:text-xl text-base '

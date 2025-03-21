@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { LabelRimac, StepBigCircle } from '../../atoms';
+import { useMediaQuery } from 'react-responsive';
 
 interface StepCompletedProps {
   text: string;
@@ -24,6 +25,9 @@ export const StepCompleted = ({
 
     return () => clearTimeout(timer);
   }, []);
+
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const textLabel = isMobile ? 'text-3xl' : 'text-4xl';
   return (
     <div className='flex flex-col items-center justify-center gap-7 text-center'>
       <div className='relative flex items-center justify-center w-[210px] h-[210px]'>
@@ -45,7 +49,7 @@ export const StepCompleted = ({
         ></StepBigCircle>
       </div>
       <LabelRimac
-        size='text-4xl'
+        size={textLabel}
         text={text}
         special={special}
         reverse={reverse}
