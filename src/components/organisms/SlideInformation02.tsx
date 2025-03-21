@@ -73,7 +73,6 @@ export const SlideInformation02 = () => {
   useEffect(() => {
     if (heigh.length > 0 && weigh.length > 0) {
       const imc = fnCalculateIMC(Number(heigh), Number(weigh));
-      console.log('imc', imc);
       if (imc < 18.5 || imc > 24.9) {
         setEnableExtra(true);
       } else {

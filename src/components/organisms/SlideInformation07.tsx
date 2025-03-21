@@ -4,15 +4,15 @@ import * as yup from 'yup';
 import { useForm, useWatch } from 'react-hook-form';
 import { MultiCheckboxForm, QuestionRimac, SelectRimac } from '../molecules';
 import { anotherOptions, optionDiagnoses } from '../../constants';
-import { useStepProgress } from '../../store';
+import { useFormData, useStepProgress } from '../../store';
 import { useEffect } from 'react';
 
 const schema = yup.object().shape({
-  checkValues: yup
+  checkDiagnoses: yup
     .array()
     .of(yup.string())
     .min(1, 'Debes seleccionar al menos una opción'),
-  additional: yup.object().when('checkValues', {
+  additionalDiag: yup.object().when('checkDiagnoses', {
     is: (value: string[]) => value.find((e) => e === '6'),
     then: (schema) =>
       schema
@@ -22,39 +22,43 @@ const schema = yup.object().shape({
   }),
 });
 export const SlideInformation07 = () => {
+  const { saveFormData, formData } = useFormData();
   const {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
     setValue,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      checkValues: [],
-      additional: undefined,
+      checkDiagnoses: formData.checkDiagnoses || [],
+      additionalDiag: formData.additionalDiag || undefined,
     },
   });
   const { addSlide, nextQuestion } = useStepProgress();
 
   const checkValues = useWatch({
     control,
-    name: 'checkValues',
+    name: 'checkDiagnoses',
   });
   const handleAddSlide = () => {
     checkValues && !checkValues.includes('7') && addSlide();
+    console.log('getValues()', getValues());
+    saveFormData(getValues());
     nextQuestion();
   };
   useEffect(() => {
     if (checkValues && checkValues?.length > 1) {
       if (checkValues[checkValues.length - 1] === '7') {
-        setValue('checkValues', ['7']);
+        setValue('checkDiagnoses', ['7']);
         return;
       } else if (
         checkValues[checkValues.length - 1] !== '7' &&
         checkValues.includes('7')
       ) {
         setValue(
-          'checkValues',
+          'checkDiagnoses',
           checkValues.filter((item) => item !== '7'),
         );
         return;
@@ -73,18 +77,18 @@ export const SlideInformation07 = () => {
           <QuestionRimac.Info text='Por favor sellecione todas las respuestas válidas.'></QuestionRimac.Info>
           <MultiCheckboxForm
             {...{ control }}
-            name='checkValues'
+            name='checkDiagnoses'
             options={optionDiagnoses}
-            message={errors?.checkValues?.message}
+            message={errors?.checkDiagnoses?.message}
           />
         </QuestionRimac>
 
         {checkValues && checkValues.includes('6') && (
           <SelectRimac
             {...{ control }}
-            name='additional'
+            name='additionalDiag'
             itemOptions={anotherOptions}
-            message={errors?.additional?.message}
+            message={errors?.additionalDiag?.message}
             placeholder='Selecciona un diagnóstico'
           ></SelectRimac>
         )}

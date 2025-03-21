@@ -5,7 +5,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { InputForm, QuestionRimac, RadioCollection } from '../molecules';
 import { optionCigars, optionTobacco } from '../../constants';
 import clsx from 'clsx';
-import { useStepProgress } from '../../store';
+import { useFormData, useStepProgress } from '../../store';
 
 const schema = yup.object().shape({
   tobacco: yup.string().required('Debes seleccionar una opción'),
@@ -28,16 +28,18 @@ const schema = yup.object().shape({
   }),
 });
 export const SlideInformation04 = () => {
+  const { saveFormData, formData } = useFormData();
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      tobacco: '',
-      cigars: '',
-      fullYear: '',
+      tobacco: formData.tobacco || '',
+      cigars: formData.cigars || '',
+      fullYear: formData.fullYear || '',
     },
   });
 
@@ -46,6 +48,10 @@ export const SlideInformation04 = () => {
     name: 'tobacco',
   });
   const { nextQuestion } = useStepProgress();
+  const onSubmit = () => {
+    saveFormData(getValues());
+    nextQuestion();
+  };
   return (
     <div
       className={clsx(
@@ -103,7 +109,7 @@ export const SlideInformation04 = () => {
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(nextQuestion)}
+            fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
         </div>
       </div>

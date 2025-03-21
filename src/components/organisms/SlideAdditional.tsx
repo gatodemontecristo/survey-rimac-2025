@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { QuestionRimac, RadioCollection } from '../molecules';
 import { optionYN } from '../../constants';
-import { useStepProgress } from '../../store';
+import { useFormData, useStepProgress } from '../../store';
 
 const schema = yup.object().shape({
   surgeon: yup.string().required('Debes seleccionar una opción'),
@@ -12,19 +12,25 @@ const schema = yup.object().shape({
   condition: yup.string().required('Debes seleccionar una opción'),
 });
 export const SlideAdditional = () => {
+  const { saveFormData, formData } = useFormData();
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      surgeon: '',
-      device: '',
-      condition: '',
+      surgeon: formData.surgeon || '',
+      device: formData.device || '',
+      condition: formData.condition || '',
     },
   });
   const { nextQuestion } = useStepProgress();
+  const onSubmit = () => {
+    saveFormData(getValues());
+    nextQuestion();
+  };
   return (
     <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-15 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
@@ -37,7 +43,11 @@ export const SlideAdditional = () => {
             {...{ control }}
             name='surgeon'
             itemOptions={optionYN}
-            message={errors?.surgeon?.message}
+            message={
+              typeof errors?.surgeon?.message === 'string'
+                ? errors.surgeon.message
+                : undefined
+            }
           />
         </QuestionRimac>
         <QuestionRimac className='mb-4 w-full'>
@@ -50,7 +60,11 @@ export const SlideAdditional = () => {
             {...{ control }}
             name='device'
             itemOptions={optionYN}
-            message={errors?.device?.message}
+            message={
+              typeof errors?.device?.message === 'string'
+                ? errors.device.message
+                : undefined
+            }
           />
         </QuestionRimac>
 
@@ -63,14 +77,18 @@ export const SlideAdditional = () => {
             {...{ control }}
             name='condition'
             itemOptions={optionYN}
-            message={errors?.condition?.message}
+            message={
+              typeof errors?.condition?.message === 'string'
+                ? errors.condition.message
+                : undefined
+            }
           />
         </QuestionRimac>
 
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(nextQuestion)}
+            fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
         </div>
       </div>
