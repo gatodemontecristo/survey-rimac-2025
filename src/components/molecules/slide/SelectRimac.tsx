@@ -1,6 +1,6 @@
 import { ItemOption, ReactFormProps } from '../../../types';
 import { Controller } from 'react-hook-form';
-import { InputSelect } from '../../atoms';
+import { ErrorMsg, InputSelect } from '../../atoms';
 
 interface SelectRimacProps extends ReactFormProps {
   itemOptions: ItemOption[];
@@ -15,7 +15,7 @@ export const SelectRimac = ({
 }: SelectRimacProps) => {
   return (
     <>
-      <div className='flex flex-row flex-wrap w-2/3'>
+      <div className='flex flex-row flex-wrap md:w-2/3 w-full'>
         <Controller
           name={name}
           control={control}
@@ -30,7 +30,7 @@ export const SelectRimac = ({
         />
       </div>
 
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </>
   );
 };

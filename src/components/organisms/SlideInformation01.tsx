@@ -1,4 +1,4 @@
-import { ButtonRimac } from '../atoms';
+import { ButtomMobile, ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, useWatch } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { optionCompany, optionInsurance, optionYN } from '../../constants';
 import { QuestionRimac, RadioCollection, SelectRimac } from '../molecules';
 import { useFormData, useStepProgress } from '../../store';
+import { useMediaQuery } from 'react-responsive';
 
 const schema = yup.object().shape({
   haveInsurance: yup.string().required('Debes seleccionar una opción'),
@@ -52,12 +53,15 @@ export const SlideInformation01 = () => {
     saveFormData(getValues());
     nextQuestion();
   };
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const textURL = isMobile ? 'text-base' : 'text-lg';
+  const textLabel = isMobile ? 'text-xl' : 'text-2xl';
   return (
-    <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-10 h-screen overflow-y-scroll custom-scrollbar'>
-      <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
+    <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-20 md:py-10  h-screen overflow-y-scroll custom-scrollbar'>
+      <div className='flex flex-col items-start justify-start md:text-justify text-start   gap-4 w-full'>
         <QuestionRimac className='mb-4'>
           <QuestionRimac.Label
-            size='text-2xl'
+            size={textLabel}
             text='¿Tienes o has tenido algún seguro médico?'
           ></QuestionRimac.Label>
           <QuestionRimac.Info
@@ -67,7 +71,7 @@ export const SlideInformation01 = () => {
           ></QuestionRimac.Info>
           <QuestionRimac.Url
             text=' Te explicamos por qué es importante tu respuesta'
-            size='text-lg'
+            size={textURL}
           ></QuestionRimac.Url>
           <RadioCollection
             {...{ control }}
@@ -80,7 +84,7 @@ export const SlideInformation01 = () => {
         {haveInsurance === 'Y' && (
           <QuestionRimac>
             <QuestionRimac.Label
-              size='text-2xl'
+              size={textLabel}
               text='Selecciona el tipo de seguro y la aseguradora'
             ></QuestionRimac.Label>
 
@@ -99,11 +103,17 @@ export const SlideInformation01 = () => {
             ></SelectRimac>
           </QuestionRimac>
         )}
-        <div className='flex flex-row justify-end w-full mt-10'>
+        <div className='md:flex hidden flex-row justify-end w-full md:mt-10 mt-5'>
           <ButtonRimac
             text='Siguiente'
             fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
+        </div>
+        <div className='bottom-0 left-0 fixed flex md:hidden flex-row justify-center w-full'>
+          <ButtomMobile
+            text='Siguiente'
+            fnClick={handleSubmit(onSubmit)}
+          ></ButtomMobile>
         </div>
       </div>
     </div>

@@ -11,17 +11,21 @@ import '../../../styles/radio-style.css';
 export const RadioRimac = React.forwardRef<HTMLInputElement, RadioRimacProps>(
   ({ value, label, checked, onChange }, ref) => {
     return (
-      <label className='flex items-center cursor-pointer'>
-        <input
-          type='radio'
-          ref={ref}
-          value={value}
-          checked={checked}
-          onChange={() => onChange(value)}
-        />
-        <div className='custom-radio'></div>
-        <span className='radio-label font-br-sonoma text-lg'>{label}</span>
-      </label>
+      <div className='flex items-center '>
+        <label className='flex items-center cursor-pointer'>
+          <input
+            type='radio'
+            ref={ref}
+            value={value}
+            checked={checked}
+            onChange={() => onChange(value)}
+          />
+          <div className='custom-radio'></div>
+        </label>
+        <span className='radio-label font-br-sonoma md:text-lg text-base'>
+          {label}
+        </span>
+      </div>
     );
   },
 );

@@ -1,4 +1,4 @@
-import { ButtonRimac } from '../atoms';
+import { ButtomMobile, ButtonRimac } from '../atoms';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, useWatch } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { InputForm, QuestionRimac, RadioCollection } from '../molecules';
 import { optionCigars, optionTobacco } from '../../constants';
 import clsx from 'clsx';
 import { useFormData, useStepProgress } from '../../store';
+import { useMediaQuery } from 'react-responsive';
 
 const schema = yup.object().shape({
   tobacco: yup.string().required('Debes seleccionar una opción'),
@@ -52,17 +53,20 @@ export const SlideInformation04 = () => {
     saveFormData(getValues());
     nextQuestion();
   };
+
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const textLabel = isMobile ? 'text-xl' : 'text-2xl';
   return (
     <div
       className={clsx(
-        'flex flex-row  justify-center w-4/5 gap-4 py-15 pr-15 h-screen overflow-y-scroll custom-scrollbar',
+        'flex flex-row  justify-center w-4/5 gap-4 md:py-15 py-20 md:pr-15 pr-0 h-screen overflow-y-scroll custom-scrollbar',
         tobacco === '4' ? 'items-start' : 'items-center',
       )}
     >
-      <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
+      <div className='flex flex-col items-start justify-start md:text-justify text-start    gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
-            size='text-2xl'
+            size={textLabel}
             text='¿Con qué frecuencia consumes productos de tabaco?'
           ></QuestionRimac.Label>
           <QuestionRimac.Info text='Elige la frase que mejor describa tu situación'></QuestionRimac.Info>
@@ -77,7 +81,7 @@ export const SlideInformation04 = () => {
         {tobacco === '4' && (
           <QuestionRimac className='mb-4 w-full'>
             <QuestionRimac.Label
-              size='text-2xl'
+              size={textLabel}
               text='¿En que año dejaste de consumir productos de tabaco?'
             ></QuestionRimac.Label>
 
@@ -86,7 +90,7 @@ export const SlideInformation04 = () => {
               name='fullYear'
               message={errors?.fullYear?.message}
               placeholder='Año'
-              className='w-1/2'
+              className='w-3/4'
               type='number'
             />
           </QuestionRimac>
@@ -94,7 +98,7 @@ export const SlideInformation04 = () => {
         {tobacco !== '5' && tobacco !== '' && (
           <QuestionRimac className='mb-4 w-full'>
             <QuestionRimac.Label
-              size='text-2xl'
+              size={textLabel}
               text='Aproximadamente, ¿cuántos cigarros consumes/consumías por ocasión?'
             ></QuestionRimac.Label>
             <RadioCollection
@@ -106,11 +110,17 @@ export const SlideInformation04 = () => {
             />
           </QuestionRimac>
         )}
-        <div className='flex flex-row justify-end w-full mt-10 pe-10'>
+        <div className='md:flex hidden flex-row justify-end w-full md:mt-10 mt-5'>
           <ButtonRimac
             text='Siguiente'
             fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
+        </div>
+        <div className='bottom-0 left-0 fixed flex md:hidden flex-row justify-center w-full'>
+          <ButtomMobile
+            text='Siguiente'
+            fnClick={handleSubmit(onSubmit)}
+          ></ButtomMobile>
         </div>
       </div>
     </div>

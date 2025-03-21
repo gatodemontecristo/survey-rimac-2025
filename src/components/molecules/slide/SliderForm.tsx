@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Controller } from 'react-hook-form';
-import { InfoRimac, SliderRimac } from '../../atoms';
+import { ErrorMsg, InfoRimac, SliderRimac } from '../../atoms';
 import { ReactFormProps } from '../../../types';
 
 interface SliderFormProps extends ReactFormProps {
@@ -40,7 +40,7 @@ export const SliderForm = ({
           )}
         />
       </div>
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </div>
   );
 };

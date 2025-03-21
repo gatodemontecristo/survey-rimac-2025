@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ItemOption, ReactFormProps, TailwindJustify } from '../../../types';
-import { RadioRimac } from '../../atoms';
+import { ErrorMsg, RadioRimac } from '../../atoms';
 import { Controller } from 'react-hook-form';
 import { nanoid } from 'nanoid';
 
@@ -19,7 +19,7 @@ export const RadioCollection = ({
     <>
       <div
         className={clsx(
-          'flex flex-row flex-wrap ms-5 gap-x-7 gap-y-2',
+          'flex flex-row flex-wrap md:ms-5 ms-2 md:gap-x-7 gap-x-4 gap-y-2',
           justifyOption,
         )}
       >
@@ -40,7 +40,7 @@ export const RadioCollection = ({
           />
         ))}
       </div>
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </>
   );
 };

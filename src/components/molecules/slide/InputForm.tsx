@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ReactFormProps } from '../../../types';
-import { InputRimac } from '../../atoms';
+import { ErrorMsg, InputRimac } from '../../atoms';
 import { Controller } from 'react-hook-form';
 
 interface InputFormProps extends ReactFormProps {
@@ -38,7 +38,7 @@ export const InputForm = ({
         />
       </div>
 
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </div>
   );
 };

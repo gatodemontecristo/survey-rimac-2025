@@ -23,7 +23,7 @@ export const CheckboxRimac: React.FC<CheckboxRimacProps> = ({
   };
 
   return (
-    <div className='flex flex-row text-center items-center  flex-wrap  gap-x-7 gap-y-3'>
+    <div className='flex flex-row text-start items-center  flex-wrap  gap-x-7 gap-y-3'>
       {options.map((option) => (
         <label key={nanoid()} className='flex items-center space-x-2'>
           <input
@@ -32,7 +32,9 @@ export const CheckboxRimac: React.FC<CheckboxRimacProps> = ({
             onChange={() => handleChange(option.value)}
             className='form-checkbox h-6 w-6 text-blue-600'
           />
-          <span className='text-rimac-black'>{option.label}</span>
+          <span className='text-rimac-black md:text-lg text-base'>
+            {option.label}
+          </span>
         </label>
       ))}
     </div>
