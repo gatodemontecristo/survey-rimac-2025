@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ReactFormProps } from '../../../types';
-import { AreaRimac } from '../../atoms';
+import { AreaRimac, ErrorMsg } from '../../atoms';
 import { Controller } from 'react-hook-form';
 
 interface AreaFormProps extends ReactFormProps {
@@ -38,7 +38,7 @@ export const AreaForm = ({
         />
       </div>
 
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </div>
   );
 };

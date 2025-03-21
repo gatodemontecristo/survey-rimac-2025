@@ -24,7 +24,7 @@ export const ToogleRimac = ({
       <button
         onClick={() => setIsOn(!isOn)}
         className={clsx(
-          'relative flex items-center w-20 h-10 bg-gray-300  rounded-full p-1 transition-all duration-300',
+          'relative flex items-center md:w-20 w-40 h-10 bg-gray-300  rounded-full p-1 transition-all duration-300',
           isOn ? 'bg-rimac-red' : 'bg-gray-300 dark:bg-rimac-grey',
         )}
       >
@@ -43,7 +43,7 @@ export const ToogleRimac = ({
         <div
           className={clsx(
             'absolute flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-md transition-transform duration-300',
-            isOn ? 'translate-x-10' : 'translate-x-0',
+            isOn ? 'md:translate-x-10 translate-x-6' : 'translate-x-0',
           )}
         >
           {isOn ? (
@@ -53,7 +53,11 @@ export const ToogleRimac = ({
           )}
         </div>
       </button>
-      {text && <p className='text-rimac-grey font-br-sonoma text-xl'>{text}</p>}
+      {text && (
+        <p className='text-rimac-grey font-br-sonoma md:text-xl text-lg md:leading-8 leading-5'>
+          {text}
+        </p>
+      )}
     </div>
   );
 };

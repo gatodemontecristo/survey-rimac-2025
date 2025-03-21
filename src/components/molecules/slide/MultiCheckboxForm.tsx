@@ -1,4 +1,4 @@
-import { CheckboxRimac } from '../../atoms';
+import { CheckboxRimac, ErrorMsg } from '../../atoms';
 import { ItemOption, ReactFormProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 
@@ -24,7 +24,7 @@ export const MultiCheckboxForm = ({
           />
         )}
       />
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </div>
   );
 };

@@ -7,3 +7,4 @@ export * from './AreaRimac';
 export * from './SliderRimac';
 export * from './CheckboxRimac';
 export * from './RefreshRimac';
+export * from './ButtomMobile';

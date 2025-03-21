@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ItemOption, ReactFormProps, TailwindJustify } from '../../../types';
-import { RadioRimac } from '../../atoms';
+import { ErrorMsg, RadioRimac } from '../../atoms';
 import { Controller } from 'react-hook-form';
 import { nanoid } from 'nanoid';
 
@@ -40,7 +40,7 @@ export const RadioCollection = ({
           />
         ))}
       </div>
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </>
   );
 };

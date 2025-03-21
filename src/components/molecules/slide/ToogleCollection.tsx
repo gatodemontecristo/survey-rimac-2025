@@ -1,5 +1,5 @@
 import { ReactFormProps } from '../../../types';
-import { ToogleRimac } from '../../atoms';
+import { ErrorMsg, ToogleRimac } from '../../atoms';
 import { Controller } from 'react-hook-form';
 
 interface ToogleCollectionProps extends ReactFormProps {
@@ -29,7 +29,7 @@ export const ToogleCollection = ({
           )}
         />
       </div>
-      {message && <p className='text-red-500'>{message}</p>}
+      {message && <ErrorMsg message={message}></ErrorMsg>}
     </>
   );
 };
