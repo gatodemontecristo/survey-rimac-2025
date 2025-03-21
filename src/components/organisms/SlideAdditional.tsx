@@ -31,7 +31,7 @@ export const SlideAdditional = () => {
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
             size='text-2xl'
-            text='¿Se ha sometido a una cirugía a raíz de esta condición/codidiciones?'
+            text='¿Se ha sometido a una cirugía a raíz de esta condición/codiciones?'
           ></QuestionRimac.Label>
           <RadioCollection
             {...{ control }}
@@ -43,7 +43,7 @@ export const SlideAdditional = () => {
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
             size='text-2xl'
-            text='¿Cuenta con añgún dispositivo médico o prótesis a raíz de esta operación?'
+            text='¿Cuenta con algún dispositivo médico o prótesis a raíz de esta operación?'
           ></QuestionRimac.Label>
           <QuestionRimac.Info text='Puede ser a nivel articular como hombro, rodilla o cadera, a nivel cardíaco como un marcapasos o stent coronario, o a nivel columna como una caja intersomática, clavos o tornillos.'></QuestionRimac.Info>
           <RadioCollection

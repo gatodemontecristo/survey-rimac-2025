@@ -3,23 +3,29 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { ButtonRimac } from '../atoms';
 import { QuestionRimac, ToogleCollection } from '../molecules';
-import { useStepProgress } from '../../store';
+import { useFormData, useStepProgress } from '../../store';
 
 const schema = yup.object().shape({
   isOn: yup.boolean().oneOf([true], 'Debes aceptar los términos y condiciones'),
 });
 export const SlideTermsConditions = () => {
+  const { saveFormData, formData } = useFormData();
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      isOn: false,
+      isOn: formData.isOn || false,
     },
   });
   const { nextQuestion } = useStepProgress();
+  const onSubmit = () => {
+    saveFormData(getValues());
+    nextQuestion();
+  };
   return (
     <div
       className='flex flex-col items-start z-1 justify-center text-justify gap-4 w-4/5 py-10 overflow-y-scroll custom-scrollbar
@@ -52,7 +58,7 @@ export const SlideTermsConditions = () => {
       <div className='flex flex-row justify-end w-full mt-10'>
         <ButtonRimac
           text='Siguiente'
-          fnClick={handleSubmit(nextQuestion)}
+          fnClick={handleSubmit(onSubmit)}
         ></ButtonRimac>
       </div>
     </div>

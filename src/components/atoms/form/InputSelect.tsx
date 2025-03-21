@@ -37,6 +37,7 @@ export const InputSelect = ({
         onBlur={handleBlur}
         className='w-full  rounded  font-br-sonoma  text-xl  focus:outline-none focus:border-blue-500 border-none'
         classNamePrefix='react-select'
+        required={false}
       />
       <label
         className={`absolute left-7   font-br-sonoma   transition-all duration-300 ease-in-out ${
