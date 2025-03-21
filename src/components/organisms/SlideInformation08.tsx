@@ -9,16 +9,16 @@ import {
   SelectRimac,
 } from '../molecules';
 import { anotherOptions, optionDisability, optionYN } from '../../constants';
-import { useStepProgress } from '../../store';
+import { useFormData, useStepProgress } from '../../store';
 import { useEffect } from 'react';
 
 const schema = yup.object().shape({
-  checkValues: yup
+  checkDisability: yup
     .array()
     .of(yup.string())
     .min(1, 'Debes seleccionar al menos una opción'),
   disability: yup.string().required('Debes seleccionar una opción'),
-  additional: yup.object().when('checkValues', {
+  additionalDisa: yup.object().when('checkDisability', {
     is: (value: string[]) => value.find((e) => e === '5'),
     then: (schema) =>
       schema
@@ -28,41 +28,47 @@ const schema = yup.object().shape({
   }),
 });
 export const SlideInformation08 = () => {
+  const { saveFormData, formData } = useFormData();
   const {
     control,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      checkValues: [],
-      disability: '',
-      additional: '',
+      checkDisability: formData.checkDisability || [],
+      disability: formData.disability || '',
+      additionalDisa: formData.additionalDisa || undefined,
     },
   });
-  const { nextQuestion } = useStepProgress();
   const checkValues = useWatch({
     control,
-    name: 'checkValues',
+    name: 'checkDisability',
   });
   useEffect(() => {
     if (checkValues && checkValues?.length > 1) {
       if (checkValues[checkValues.length - 1] === '6') {
-        setValue('checkValues', ['6']);
+        setValue('checkDisability', ['6']);
         return;
       } else if (
         checkValues[checkValues.length - 1] !== '6' &&
         checkValues.includes('6')
       ) {
         setValue(
-          'checkValues',
+          'checkDisability',
           checkValues.filter((item) => item !== '6'),
         );
         return;
       }
     }
   }, [checkValues]);
+  const { nextQuestion } = useStepProgress();
+  const onSubmit = () => {
+    saveFormData(getValues());
+    nextQuestion();
+  };
   return (
     <div className='flex flex-row items-start justify-center w-4/5 gap-4 py-10 pr-15 h-screen overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
@@ -86,24 +92,24 @@ export const SlideInformation08 = () => {
           ></QuestionRimac.Label>
           <MultiCheckboxForm
             {...{ control }}
-            name='checkValues'
+            name='checkDisability'
             options={optionDisability}
-            message={errors?.checkValues?.message}
+            message={errors?.checkDisability?.message}
           />
         </QuestionRimac>
         {checkValues && checkValues.includes('5') && (
           <SelectRimac
             {...{ control }}
-            name='additional'
+            name='additionalDisa'
             itemOptions={anotherOptions}
-            message={errors?.additional?.message}
+            message={errors?.additionalDisa?.message}
             placeholder='Selecciona un diagnóstico'
           ></SelectRimac>
         )}
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(nextQuestion)}
+            fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
         </div>
       </div>

@@ -12,9 +12,10 @@ import { optionLast12 } from '../../constants';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { fnCalculateIMC } from '../../utils';
-import { useStepProgress } from '../../store';
+import { useFormData, useStepProgress } from '../../store';
 
 export const SlideInformation02 = () => {
+  const { saveFormData, formData } = useFormData();
   const [enableExtra, setEnableExtra] = useState<boolean>(false);
   const schema = yup.object().shape({
     heigh: yup.string().required('Debes ingresar tu talla (CM)'),
@@ -47,15 +48,16 @@ export const SlideInformation02 = () => {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      heigh: '',
-      weigh: '',
-      las12months: '',
-      weightgain: '',
-      comment: '',
+      heigh: formData.heigh || '',
+      weigh: formData.weigh || '',
+      las12months: formData.las12months || '',
+      weightgain: formData.weightgain || '',
+      comment: formData.comment || '',
     },
   });
 
@@ -71,7 +73,6 @@ export const SlideInformation02 = () => {
   useEffect(() => {
     if (heigh.length > 0 && weigh.length > 0) {
       const imc = fnCalculateIMC(Number(heigh), Number(weigh));
-      console.log('imc', imc);
       if (imc < 18.5 || imc > 24.9) {
         setEnableExtra(true);
       } else {
@@ -82,6 +83,10 @@ export const SlideInformation02 = () => {
     }
   }, [weigh, heigh]);
   const { nextQuestion } = useStepProgress();
+  const onSubmit = () => {
+    saveFormData(getValues());
+    nextQuestion();
+  };
   return (
     <div
       className={clsx(
@@ -163,7 +168,7 @@ export const SlideInformation02 = () => {
         <div className='flex flex-row justify-end w-full mt-10 pe-10'>
           <ButtonRimac
             text='Siguiente'
-            fnClick={handleSubmit(nextQuestion)}
+            fnClick={handleSubmit(onSubmit)}
           ></ButtonRimac>
         </div>
       </div>

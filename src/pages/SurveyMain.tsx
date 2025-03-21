@@ -2,11 +2,53 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { useStepProgress } from '../store';
 import { ButtonRimac } from '../components';
+import {
+  SlideInformation01,
+  SlideTermsConditions,
+  SlideInformation02,
+  SlideInformation03,
+  SlideInformation04,
+  SlideInformation05,
+  SlideSuccess01,
+  SlideSuccess02,
+  SlideInformation06,
+  SlideInformation07,
+  SlideInformation08,
+  SlideInformation09,
+  SlideSuccess03,
+  SlideInformation10,
+  SlideFinish,
+  SlideAdditional,
+} from '../components';
+import { ReactNode } from 'react';
 
+const componentMap: Record<string, ReactNode> = {
+  SlideInformation01: <SlideInformation01 />,
+  SlideTermsConditions: <SlideTermsConditions />,
+  SlideInformation02: <SlideInformation02 />,
+  SlideInformation03: <SlideInformation03 />,
+  SlideInformation04: <SlideInformation04 />,
+  SlideInformation05: <SlideInformation05 />,
+  SlideSuccess01: <SlideSuccess01 />,
+  SlideSuccess02: <SlideSuccess02 />,
+  SlideInformation06: <SlideInformation06 />,
+  SlideInformation07: <SlideInformation07 />,
+  SlideInformation08: <SlideInformation08 />,
+  SlideInformation09: <SlideInformation09 />,
+  SlideSuccess03: <SlideSuccess03 />,
+  SlideInformation10: <SlideInformation10 />,
+  SlideFinish: <SlideFinish />,
+  SlideAdditional: <SlideAdditional />,
+};
 export const SurveyMain = () => {
-  const { step, backQuestion, nextSlide, indexSlide, slides } =
-    useStepProgress();
+  const { backQuestion, indexSlide, slides, step } = useStepProgress();
   const sum = Object.keys(slides).length === 16 ? 1 : 0;
+
+  const getComponentByIndex = () => {
+    const componentName = slides[step];
+    return componentMap[componentName] || null;
+  };
+
   return (
     <div className='h-screen w-3/4 flex justify-center items-center  bg-rimac-red'>
       <AnimatePresence mode='wait'>
@@ -28,7 +70,7 @@ export const SurveyMain = () => {
               <ButtonRimac isNav={true} fnClick={backQuestion}></ButtonRimac>
             </div>
           )}
-          {nextSlide()}
+          {getComponentByIndex() || <div>No se econtro</div>}
         </motion.div>
       </AnimatePresence>
     </div>
