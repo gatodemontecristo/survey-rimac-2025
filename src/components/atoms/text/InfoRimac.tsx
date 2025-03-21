@@ -12,7 +12,7 @@ export const InfoRimac = ({
   return (
     <p
       className={clsx(
-        'text-rimac-grey font-br-sonoma md:leading-8 leading-5',
+        'text-rimac-grey font-br-sonoma md:leading-8 leading-6',
         className,
         size,
       )}

@@ -15,7 +15,7 @@ export const SelectRimac = ({
 }: SelectRimacProps) => {
   return (
     <>
-      <div className='flex flex-row flex-wrap w-2/3'>
+      <div className='flex flex-row flex-wrap md:w-2/3 w-full'>
         <Controller
           name={name}
           control={control}

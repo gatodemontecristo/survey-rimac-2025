@@ -32,7 +32,9 @@ export const CheckboxRimac: React.FC<CheckboxRimacProps> = ({
             onChange={() => handleChange(option.value)}
             className='form-checkbox h-6 w-6 text-blue-600'
           />
-          <span className='text-rimac-black'>{option.label}</span>
+          <span className='text-rimac-black md:text-lg text-base'>
+            {option.label}
+          </span>
         </label>
       ))}
     </div>

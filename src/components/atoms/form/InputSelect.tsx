@@ -35,7 +35,7 @@ export const InputSelect = ({
         placeholder=''
         onFocus={handleFocus}
         onBlur={handleBlur}
-        className='w-full  rounded  font-br-sonoma  text-xl  focus:outline-none focus:border-blue-500 border-none'
+        className='w-full  rounded  font-br-sonoma  md:text-xl text-lg  focus:outline-none focus:border-blue-500 border-none'
         classNamePrefix='react-select'
         required={false}
       />
@@ -43,7 +43,7 @@ export const InputSelect = ({
         className={`absolute left-7   font-br-sonoma   transition-all duration-300 ease-in-out ${
           isFocused || value
             ? 'text-sm   top-1 text-blue-500'
-            : 'text-gray-500 -translate-y-1/2 top-1/2 text-xl '
+            : 'text-gray-500 -translate-y-1/2 top-1/2 md:text-xl text-base '
         }`}
         style={{
           pointerEvents: 'none',
