@@ -98,7 +98,7 @@ export const SlideInformation02 = () => {
         enableExtra ? 'items-start' : 'items-center',
       )}
     >
-      <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
+      <div className='flex flex-col items-start justify-start md:text-justify text-start   gap-4 w-full'>
         <QuestionRimac className='mb-4 w-3/4'>
           <QuestionRimac.Label
             size={textLabel}

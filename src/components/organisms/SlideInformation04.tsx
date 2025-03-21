@@ -63,7 +63,7 @@ export const SlideInformation04 = () => {
         tobacco === '4' ? 'items-start' : 'items-center',
       )}
     >
-      <div className='flex flex-col items-start justify-start text-justify   gap-4 w-full'>
+      <div className='flex flex-col items-start justify-start md:text-justify text-start    gap-4 w-full'>
         <QuestionRimac className='mb-4 w-full'>
           <QuestionRimac.Label
             size={textLabel}
