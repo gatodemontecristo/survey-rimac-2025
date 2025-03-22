@@ -59,7 +59,7 @@ export const SlideInformation04 = () => {
   return (
     <div
       className={clsx(
-        'flex flex-row  justify-center w-4/5 gap-4 md:py-15 py-20 md:pr-15 pr-0 h-screen overflow-y-scroll custom-scrollbar',
+        'flex flex-row  justify-center w-4/5 gap-4 md:py-15 py-20 md:pr-15 pr-0  md:h-screen min-h-screen max-h-fit md:overflow-y-scroll custom-scrollbar',
         tobacco === '4' ? 'items-start' : 'items-center',
       )}
     >
