@@ -3,7 +3,7 @@ import { useState } from 'react';
 interface InputRimacProps {
   placeholder?: string;
   value: string;
-  type: 'decimal' | 'number';
+  type: 'decimal' | 'number' | 'text';
   onChange: (value: string) => void;
 }
 export const InputRimac = ({
@@ -37,12 +37,25 @@ export const InputRimac = ({
     }
   };
 
+  const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    if (/^[a-zA-Z\s]*$/.test(newValue)) {
+      onChange(newValue);
+    }
+  };
+
   return (
     <div className='relative w-full'>
       <input
         type='text'
         value={value}
-        onChange={type === 'number' ? handleChangeNumber : handleChangeDecimal}
+        onChange={
+          type === 'number'
+            ? handleChangeNumber
+            : type === 'decimal'
+              ? handleChangeDecimal
+              : handleChangeText
+        }
         onFocus={handleFocus}
         onBlur={handleBlur}
         className='w-full px-4 pt-5 pb-3 md:text-xl text-lg   font-br-sonoma border border-gray-300 rounded focus:outline-none focus:border-blue-500'
