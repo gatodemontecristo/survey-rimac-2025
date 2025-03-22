@@ -57,7 +57,7 @@ export const SlideInformation01 = () => {
   const textURL = isMobile ? 'text-base' : 'text-lg';
   const textLabel = isMobile ? 'text-xl' : 'text-2xl';
   return (
-    <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-20 md:py-10  h-screen overflow-y-scroll custom-scrollbar'>
+    <div className='flex flex-row items-center justify-start w-4/5 gap-4 py-20 md:py-10  md:h-screen min-h-screen max-h-fit md:overflow-y-scroll custom-scrollbar'>
       <div className='flex flex-col items-start justify-start md:text-justify text-start   gap-4 w-full'>
         <QuestionRimac className='mb-4'>
           <QuestionRimac.Label
