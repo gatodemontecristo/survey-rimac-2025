@@ -94,7 +94,7 @@ export const SlideInformation02 = () => {
   return (
     <div
       className={clsx(
-        'flex flex-row justify-center w-4/5 gap-4 py-18 md:py-20  h-screen overflow-y-scroll custom-scrollbar',
+        'flex flex-row justify-center w-4/5 gap-4 py-18 md:py-20  md:h-screen min-h-screen max-h-fit md:overflow-y-scroll custom-scrollbar',
         enableExtra ? 'items-start' : 'items-center',
       )}
     >
