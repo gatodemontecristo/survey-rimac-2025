@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form';
 
 interface InputFormProps extends ReactFormProps {
   placeholder: string;
-  type?: 'decimal' | 'number';
+  type?: 'decimal' | 'number' | 'text';
   className?: string;
 }
 export const InputForm = ({
